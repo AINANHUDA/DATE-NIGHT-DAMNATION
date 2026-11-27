@@ -28,9 +28,11 @@ export class TitleScene extends Phaser.Scene {
   this.add.rectangle(92,409,430,2,0xcfa45b,.85).setOrigin(0,.5).setDepth(4);
   this.add.text(90,438,'One date. One kidnapping.\nAn unreasonable number of bananas.',{fontFamily:'Rajdhani, Arial',fontStyle:'bold',fontSize:'27px',color:'#f2e6cf',lineSpacing:7}).setDepth(4);
   const menuButton=(x,y,w,label,action,primary=false)=>{const plate=this.add.rectangle(x,y,w,50,primary?0xa96b26:0x182535,.95).setStrokeStyle(1,0xffdc90,.8).setInteractive({useHandCursor:true}).setDepth(5);t(x,y,label,20,'#fff6df','Arial').setOrigin(.5).setDepth(6);plate.on('pointerover',()=>plate.setFillStyle(primary?0xcb903d:0x35465c));plate.on('pointerout',()=>plate.setFillStyle(primary?0xa96b26:0x182535));plate.on('pointerdown',()=>{if(!this.opening&&!this.menuOpening)action();});};
-  const play=()=>profile.save?this.openGate(continueCampaign()):this.openGate(newCampaign());
-  menuButton(307,535,434,profile.save?'CONTINUE ADVENTURE  ›':'PLAY  ›',play,true);
-  menuButton(195,595,210,'NEW GAME',()=>profile.save?openMenu(this,'confirm'):this.openGate(newCampaign()));
+  // Main action always starts the prologue. Resume is a separate, explicit choice.
+  const play=()=>this.startStory();
+  menuButton(307,535,434,'START STORY  ›',play,true);
+  if(profile.save)menuButton(195,595,210,'CONTINUE SAVE',()=>this.resumeStory());
+  else {this.add.rectangle(195,595,210,50,0x182535,.45).setStrokeStyle(1,0x424955).setDepth(5);t(195,595,'NO SAVED GAME',18,'#828895','Arial').setOrigin(.5).setDepth(6);}
   menuButton(419,595,210,'CHAPTERS',()=>openMenu(this,'chapters'));
   menuButton(195,650,210,'SETTINGS',()=>openMenu(this,'settings'));
   menuButton(419,650,210,`COMPLETED: ${profile.completed}`,()=>openMenu(this,'chapters'));
@@ -38,6 +40,15 @@ export class TitleScene extends Phaser.Scene {
   const key=e=>{if(!e.repeat&&!this.menuOpening&&!this.opening)play();};this.input.keyboard.on('keydown-ENTER',key);this.events.once('shutdown',()=>this.input.keyboard.off('keydown-ENTER',key));
   if(recoveredFromBackup)this.add.text(W-25,25,'Save recovered from backup',{fontFamily:'Arial',fontSize:'16px',color:'#ffe0a2'}).setOrigin(1,0).setDepth(8);
   this.cameras.main.fadeIn(450);
+ }
+ startStory(){
+  if(this.opening||this.menuOpening)return;
+  // Confirm replacing an existing campaign; keep settings and unlocked chapters.
+  if(profile.save)openMenu(this,'confirm');else this.openGate(newCampaign());
+ }
+ resumeStory(){
+  if(this.opening||this.menuOpening||!profile.save)return;
+  this.openGate(continueCampaign());
  }
  openGate(target){
   if(this.opening||!target)return;this.audio?.cue('gate');this.opening=true;

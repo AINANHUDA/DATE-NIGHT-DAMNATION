@@ -26,19 +26,8 @@ dist-ssr
 .env
 .env.*
 !.env.example
-
-# MONKEY MIND III: local build and private material
-node_modules/
-dist/
-release-monkey-mind-iii/
-.mm-release-*/
-.vercel/
-.env
-.env.*
-!.env.example
-*.log
-*.zip
-references/
+# Private reference photographs
 artwork/references/
-.DS_Store
-Thumbs.db
+
+# Temporary artwork exports
+artwork/exports/
