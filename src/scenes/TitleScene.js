@@ -25,10 +25,10 @@ export class TitleScene extends Phaser.Scene {
   for(let i=0;i<(settings.graphics==='low'?8:24);i++){const x=Phaser.Math.Between(10,W-10),y=Phaser.Math.Between(80,H-30);const p=this.add.circle(x,y,Phaser.Math.Between(1,3),0xffd78d,.5).setDepth(2);this.tweens.add({targets:p,y:y-65,alpha:.08,duration:1800+i*95,yoyo:true,repeat:-1,ease:'Sine.InOut'});}
   const t=(x,y,str,size,color='#f8ebce')=>this.add.text(x,y,str,{fontFamily:'Georgia, Times New Roman, serif',fontSize:`${size}px`,color,fontStyle:'bold',stroke:'#160c12',strokeThickness:2}).setDepth(4);
   const ornaments=this.add.graphics().setDepth(3);ornaments.lineStyle(2,0xa7804e,.7).strokeRect(26,25,W-52,H-50);ornaments.lineStyle(1,0x8b623b,.5).strokeRect(34,33,W-68,H-66);
-  t(350,64,'A   M O N K E Y   M I N D   A D V E N T U R E',14,'#ddbc81').setOrigin(.5);
+  t(350,64,'A   D A R K   F A N T A S Y   C O M E D Y',14,'#ddbc81').setOrigin(.5);
   gothicTitle(this,350,206,625,4);
-  t(350,330,'T H E   R E S C U E',24,'#e2be80').setOrigin(.5);relicRule(this,350,361,492);
-  this.add.text(350,390,'One date. One kidnapping.\nAn unreasonable number of bananas.',{fontFamily:'Georgia, serif',fontSize:'22px',color:'#e2d3bc',align:'center',lineSpacing:8}).setOrigin(.5,0).setDepth(4);
+  relicRule(this,350,361,492);
+  this.add.text(350,390,'Dinner reservations can wait.',{fontFamily:'Georgia, serif',fontSize:'22px',color:'#e2d3bc',align:'center',lineSpacing:8}).setOrigin(.5,0).setDepth(4);
   const menuButton=(x,y,w,label,action,primary=false,enabled=true)=>{const bg=this.add.rectangle(x,y,w,49,primary?0x4f1823:0x171218,primary?.98:.82).setStrokeStyle(1,enabled?0xb89760:0x5a4d43,.9).setDepth(5);const g=this.add.graphics().setDepth(6);g.lineStyle(1,0x917147,.7).strokeRect(x-w/2+5,y-19,w-10,38);for(const dx of [-w/2+10,w/2-10]){g.fillStyle(enabled?0xd3aa65:0x736251);g.fillPoints([{x:x+dx-4,y},{x:x+dx,y:y-5},{x:x+dx+4,y},{x:x+dx,y:y+5}],true);}const txt=t(x,y,label,primary?23:18,enabled?'#f5dfac':'#84786d').setOrigin(.5).setDepth(7);if(!enabled)return;bg.setInteractive({useHandCursor:true});bg.on('pointerover',()=>{bg.setFillStyle(primary?0x8a2734:0x3b242b);txt.setColor('#fff5da');});bg.on('pointerout',()=>{bg.setFillStyle(primary?0x4f1823:0x171218);txt.setColor('#f5dfac');});bg.on('pointerdown',()=>{if(!this.opening&&!this.menuOpening)action();});};
   // Always starts prologue; continuation is a separate action.
   const play=()=>this.startStory();
