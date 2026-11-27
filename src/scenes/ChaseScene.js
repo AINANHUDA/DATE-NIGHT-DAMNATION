@@ -2,7 +2,7 @@
  * Exploration simulation, enemies, collectibles, player health, level HUD and boss gate.
  * Customization map: docs/CUSTOMIZATION.md
  */
-import { cover, cameraTarget, damp, meter, portrait, screenShade, Atmosphere, syncShadow, setTextIfChanged } from '../ui/Presentation.js';
+import { cover, cameraTarget, damp, meter, hudPlate, portrait, screenShade, Atmosphere, syncShadow, setTextIfChanged } from '../ui/Presentation.js';
 import { checkpointHealth, gateSupplies, nextBanana } from '../world/CampaignBalance.js';
 import { markChapter, incomingDamage, settings } from '../systems/CampaignProfile.js';
 import { installPause } from './MenuScene.js';
@@ -40,8 +40,9 @@ export class ChaseScene extends Phaser.Scene {
   this.add.image(END-160,GROUND-110,'fx-naja-cyclone').setDisplaySize(170,200).setAlpha(.8).setDepth(2);
   this.add.text(END-160,GROUND-246,'BOSS GATE',{fontSize:'21px',fontStyle:'bold',color:'#fff1b8',stroke:'#15151e',strokeThickness:4}).setOrigin(.5);
   this.hud=this.add.graphics().setScrollFactor(0).setDepth(30);
-  portrait(this,'ainan-portrait',52,49,0xe2bc76,58,30);this.label=this.add.text(96,15,'',{fontFamily:'Rajdhani, Arial',fontSize:'24px',fontStyle:'bold',color:'#fff0b3',stroke:'#132015',strokeThickness:3}).setScrollFactor(0).setDepth(31);
-  this.energyLabel=this.add.text(466,76,'',{fontFamily:'Rajdhani, Arial',fontSize:'15px',fontStyle:'bold',color:'#ffdc89'}).setOrigin(1,.5).setScrollFactor(0).setDepth(31);
+  portrait(this,'ainan-portrait',52,57,0xe2bc76,68,30);this.label=this.add.text(96,12,'',{fontFamily:'Rajdhani, Arial',fontSize:'29px',fontStyle:'bold',color:'#fff0b3',stroke:'#132015',strokeThickness:3}).setScrollFactor(0).setDepth(31);
+  this.energyLabel=this.add.text(503,83,'',{fontFamily:'Rajdhani, Arial',fontSize:'20px',fontStyle:'bold',color:'#ffdc89'}).setOrigin(1,.5).setScrollFactor(0).setDepth(31);
+  this.resourceLabel=this.add.text(96,102,'',{fontFamily:'Rajdhani, Arial',fontSize:'23px',fontStyle:'bold',color:'#ffe6a2',stroke:'#132015',strokeThickness:2}).setScrollFactor(0).setDepth(31);
   this.goal=this.add.text(W-28,18,'REACH THE GATE  ›',{fontFamily:'Rajdhani, Arial',fontSize:'25px',fontStyle:'bold',color:'#ffffff',stroke:'#132015',strokeThickness:3}).setOrigin(1,0).setScrollFactor(0).setDepth(31);
   this.notice=this.add.text(W/2,108,`Collect ${REQUIRED} bananas • Explore the three regions`,{fontSize:'20px',color:'#fff',stroke:'#14181c',strokeThickness:4}).setOrigin(.5).setScrollFactor(0).setDepth(31);
   this.zoneTitle=this.add.text(W/2,156,'',{fontFamily:'Georgia',fontSize:'30px',fontStyle:'bold',color:'#ffe7b0',stroke:'#142024',strokeThickness:4}).setOrigin(.5).setScrollFactor(0).setDepth(31);this.inputState=makeFightInput(this,W,H);const audioLabel=this.add.text(W/2,H-12,'',{fontSize:'12px',color:'#fff1c9',stroke:'#111827',strokeThickness:2}).setOrigin(.5,1).setScrollFactor(0).setDepth(102).setInteractive({useHandCursor:true});this.audio.onChange=()=>audioLabel.setText(`SOUND ${audioSettings.enabled?'ON':'OFF'} (M)  •  VOICE ${audioSettings.voice?'ON':'OFF'} (V)`);this.audio.onChange();audioLabel.on('pointerdown',()=>this.audio.toggle());this.cinematic=new CinematicDirector(this,W,H);this.updateZone();this.drawHud();this.cameras.main.scrollX=Phaser.Math.Clamp(this.hero.x-W*.4,0,END-W);this.cameras.main.fadeIn(400);installPause(this,W,H);
@@ -81,7 +82,8 @@ export class ChaseScene extends Phaser.Scene {
  banana(x,y){const id=`${x}:${y}`;if(this.usedBananas.has(id))return;const g=this.add.graphics({x,y}).setDepth(2);const pts=[[-12,-13],[-14,-7],[-13,0],[-9,6],[-3,10],[4,10],[10,8],[15,6]].map(([x,y])=>new Phaser.Math.Vector2(x,y));g.lineStyle(13,0x795027,1).strokePoints(pts);g.lineStyle(9,0xffd34e,1).strokePoints(pts);g.lineStyle(2,0xfff1a1,1).strokePoints(pts.map(p=>new Phaser.Math.Vector2(p.x+1,p.y-2)));this.bananas.push({g,x,y,id});this.tweens.add({targets:g,y:y-7,yoyo:true,repeat:-1,duration:650+((x%4)*55)});}
 
  pose(state){if(this.state!==state){this.state=state;this.hero.anims.timeScale=1;this.hero.play(animationKey('ainan',state),true);}}
- drawHud(){const progress=Math.floor(Math.min(1,this.hero.x/END)*100);const signature=[this.hp,this.count,this.ammo,Math.floor(this.energy),progress].join(':');if(signature===this.hudSignature)return;this.hudSignature=signature;const g=this.hud;g.clear().fillStyle(0x0c1420,.84).fillRoundedRect(12,10,480,80,9);meter(g,96,49,370,12,this.hp/100,0x72c995);meter(g,96,68,285,10,this.energy/100,0xf7c55c);setTextIfChanged(this.energyLabel,`ULT ${Math.floor(this.energy)}%`);setTextIfChanged(this.label,`HP ${Math.ceil(this.hp)}  •  BANANAS ${this.count}/${REQUIRED}  •  SHOTS ${this.ammo}`);g.fillStyle(0x07111a,.8).fillRoundedRect(W-300,51,272,7,3).fillStyle(0xe8c078,1).fillRect(W-300,51,272*progress/100,7);for(const x of checkpointXs){g.fillStyle(0xf4d2a1,1).fillRect(W-300+272*x/END,48,2,13);}}
+ drawHud(){const progress=Math.floor(Math.min(1,this.hero.x/END)*100);const signature=[this.hp,this.count,this.ammo,Math.floor(this.energy),progress].join(':');if(signature===this.hudSignature)return;this.hudSignature=signature;const g=this.hud;g.clear();hudPlate(g,12,5,510,130,0xe2bc76);meter(g,96,48,406,24,this.hp/100,this.hp<25?0xff667c:0x51d8a0);meter(g,96,81,275,12,this.energy/100,0xf7c55c);setTextIfChanged(this.energyLabel,this.energy>=100?'ULT READY!':`ULT ${Math.floor(this.energy)}%`);setTextIfChanged(this.label,`AINAN  ${Math.ceil(this.hp)}/100 HP`);setTextIfChanged(this.resourceLabel,`BANANAS ${this.count}/${REQUIRED}   •   AMMO ${this.ammo}`);hudPlate(g,W-328,5,316,80,0x5ed7f2);meter(g,W-300,54,272,14,progress/100,0x5ed7f2);for(const x of checkpointXs){g.fillStyle(0xf4d2a1,1).fillRect(W-300+272*x/END,49,3,24);}}
+
 
  hit(amount=12,dir=0){amount=incomingDamage(amount);if(this.combatNow<this.damageUntil||this.combatNow<this.dashUntil)return;const guarded=this.guard&&(dir===0||this.dir===-dir);this.audio?.cue(guarded?'guard':'hit');this.damageUntil=this.combatNow+850;this.hp=Math.max(0,this.hp-(guarded?Math.max(1,Math.round(amount*.2)):amount));this.hero.setTint(0xffa49e);this.time.delayedCall(240,()=>this.hero.clearTint());this.cameras.main.shake(90,.003);impactSparks(this,this.hero.x,this.hero.y-75,dir||-this.dir,false,guarded);impactPause(this,[this.hero,...this.enemies.filter(e=>e.hp).map(e=>e.s)],guarded?25:45);if(!guarded){this.vx=(dir||-this.dir)*155;this.vy=-180;this.grounded=false;this.attack=null;this.chainUntil=-1;this.dashUntil=0;this.stunUntil=this.combatNow+250;this.pose('hurt');}}
  end(win){
@@ -102,7 +104,7 @@ export class ChaseScene extends Phaser.Scene {
    }
    return;
   }
-  this.audio?.cue('announcer-ko');this.finished=true;
+  this.audio?.cue('announcer-ko');this.audio?.cue('meme-faa',.55,1200);this.finished=true;
   this.notice.setText('K.O.  •  Tap here or press ENTER to retry').setInteractive({useHandCursor:true});
   let restarting=false;const retry=()=>{if(restarting)return;restarting=true;this.scene.restart({checkpoint:this.checkpoint});};this.notice.on('pointerdown',retry);this.input.keyboard.once('keydown-ENTER',retry);this.events.once('shutdown',()=>this.input.keyboard.off('keydown-ENTER',retry));
  }
@@ -111,11 +113,11 @@ export class ChaseScene extends Phaser.Scene {
   this.tweens.add({targets:fx,scaleX:scale,scaleY:scale,x:x+dir*30,alpha:0,duration:280,ease:'Cubic.Out',onComplete:()=>fx.destroy()});
  }
  damageEnemy(e,damage,dir,strong=false){
-  if(!e.hp)return false;this.audio?.cue(strong?'heavy':'hit');e.hp=Math.max(0,e.hp-damage);e.impact=0;e.until=this.combatNow+360;
+  if(!e.hp)return false;this.audio?.cue(strong?'heavy':'hit');if(strong)this.audio?.cue('meme-bonk',.33,1200);e.hp=Math.max(0,e.hp-damage);e.impact=0;e.until=this.combatNow+360;
   e.s.play(animationKey('mini-maliha',e.hp?'hurt':'down'));e.s.x=Phaser.Math.Clamp(e.s.x+dir*(strong?48:28),e.segment.x+18,e.segment.x+e.segment.w-18);
   if(!e.hp){this.deadEnemies.add(e.home);this.tweens.add({targets:e.s,alpha:0,duration:550,delay:270});}
-  this.energy=Math.min(100,this.energy+damage*1.7);this.combo=this.combatNow<this.comboUntil?this.combo+1:1;this.comboUntil=this.combatNow+1000;if(this.combo>=2)this.inputState.tell(`${this.combo} HIT COMBO`,700);
-  this.cameras.main.shake(strong?130:70,strong?.004:.002);impactSparks(this,e.s.x-dir*20,e.s.y-65,dir,strong);impactPause(this,[this.hero,...this.enemies.filter(o=>o.hp||o===e).map(o=>o.s)],strong?78:40);const t=this.add.text(e.s.x,e.s.y-105,strong?'POWER '+damage:String(damage),{fontSize:'20px',fontStyle:'bold',color:'#ffe4a1',stroke:'#16151c',strokeThickness:3}).setOrigin(.5).setDepth(10);this.tweens.add({targets:t,y:t.y-35,alpha:0,duration:420,onComplete:()=>t.destroy()});return true;
+  this.energy=Math.min(100,this.energy+damage*1.7);this.combo=this.combatNow<this.comboUntil?this.combo+1:1;this.comboUntil=this.combatNow+1000;if(this.combo>=2)this.inputState.tell(`${this.combo} HIT COMBO${this.combo>=3?' • COOKED!':''}`,700);
+  this.cameras.main.shake(strong?130:70,strong?.004:.002);impactSparks(this,e.s.x-dir*20,e.s.y-65,dir,strong);impactPause(this,[this.hero,...this.enemies.filter(o=>o.hp||o===e).map(o=>o.s)],strong?78:40);const t=this.add.text(e.s.x,e.s.y-105,strong?'BONK! '+damage:String(damage),{fontSize:'20px',fontStyle:'bold',color:'#ffe4a1',stroke:'#16151c',strokeThickness:3}).setOrigin(.5).setDepth(10);this.tweens.add({targets:t,y:t.y-35,alpha:0,duration:420,onComplete:()=>t.destroy()});return true;
  }
  beginAttack(state){
   const now=this.combatNow;if(!canStart(this,now,state))return false;

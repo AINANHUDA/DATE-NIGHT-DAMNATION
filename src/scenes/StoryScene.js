@@ -41,7 +41,7 @@ export class StoryScene extends Phaser.Scene {
  effect(key,x,y,size){if(!this.textures.exists(key))return;const s=this.add.image(x,y,key).setDepth(6);const scale=size/Math.max(s.width,s.height);s.setScale(scale*.55).setAlpha(.9);this.tweens.add({targets:s,scaleX:scale,scaleY:scale,angle:50,alpha:0,duration:750,ease:'Cubic.Out',onComplete:()=>s.destroy()});}
  act(id,state){const s=this.actors[id];if(s&&CHARACTERS[id].animations[state])s.play(animationKey(id,state),true);}
  event(name){this.audio?.cue(name==='release'?'heal':name==='entry'||name==='escape'?'dash':name==='endingDown'?'heavy':'magic');const a=this.actors;switch(name){
-  case 'entry':a.maliha.setVisible(true);this.act('maliha','walk');this.tweens.add({targets:a.maliha,x:1010,duration:650,ease:'Cubic.Out',onComplete:()=>this.act('maliha','idle')});break;
+  case 'entry':this.audio?.cue('meme-scratch',.46,1200);a.maliha.setVisible(true);this.act('maliha','walk');this.tweens.add({targets:a.maliha,x:1010,duration:650,ease:'Cubic.Out',onComplete:()=>this.act('maliha','idle')});break;
   case 'kidnap':this.act('maliha','skill1');this.effect('fx-naja-cyclone',725,410,370);this.cameras.main.shake(180,.008);break;
   case 'escape':this.act('maliha','run');this.tweens.add({targets:[a.jennifer,a.maliha],x:W+260,alpha:0,duration:650});break;
   case 'resolve':this.act('ainan','run');this.tweens.add({targets:a.ainan,x:680,duration:450});break;

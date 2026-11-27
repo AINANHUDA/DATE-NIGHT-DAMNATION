@@ -21,7 +21,7 @@ export const assetManifest = {
  spritesheets:[], atlases:Object.values(CHARACTERS).map(c=>({key:c.texture,textureURL:c.image.replace(/[^/]+$/,'atlas-compact.webp'),atlasURL:c.atlas.replace(/[^/]+$/,'atlas-compact.json')})),
  audio:[...['woods','harbor','sanctuary'].map(n=>({key:`ambient-${n}`,url:`audio/campaign/ambient/${n}.ogg`,optional:true})),
   ...['date','woods','harbor','sanctuary','victory'].map(n=>({key:`music-${n}`,url:`audio/campaign/music/${n}.ogg`,optional:true})),
-  ...['slash','heavy','hit','guard','jump','dash','shot','magic','warning','ultimate','pickup','heal','checkpoint','fall','gate','click','victory'].map(n=>({key:`sfx-${n}`,url:`audio/campaign/sfx/${n}.ogg`,optional:true})),
+  ...['slash','heavy','hit','guard','jump','dash','shot','magic','warning','ultimate','pickup','heal','checkpoint','fall','gate','click','victory','meme-faa','meme-bonk','meme-scratch'].map(n=>({key:`sfx-${n}`,url:`audio/campaign/sfx/${n}.ogg`,optional:true})),
   ...Object.keys(voiceLines).map(n=>({key:`voice-${n}`,url:`audio/campaign/voices/${n}.ogg`,optional:true})),{key:'final-battle',url:'audio/music/final-battle.mp3'},
   {key:'announcer-fight',url:'audio/voices/announcer/fight.mp3'},
   {key:'announcer-ko',url:'audio/voices/announcer/ko.mp3'}],tilemaps:[]

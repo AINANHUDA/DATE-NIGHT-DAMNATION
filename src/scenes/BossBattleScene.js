@@ -2,7 +2,7 @@
  * Both boss arenas: fighters, player attacks, HP, HUD, cage, KO and rescue progression.
  * Customization map: docs/CUSTOMIZATION.md
  */
-import { cover, meter, portrait, screenShade, Atmosphere, syncShadow, setTextIfChanged } from '../ui/Presentation.js';
+import { cover, meter, hudPlate, portrait, screenShade, Atmosphere, syncShadow, setTextIfChanged } from '../ui/Presentation.js';
 import { incomingDamage, settings } from '../systems/CampaignProfile.js';
 import { installPause } from './MenuScene.js';
 import { AudioDirector, audioSettings } from '../audio/AudioDirector.js';
@@ -58,12 +58,12 @@ export class BossBattleScene extends Phaser.Scene {
 
   this.inputState=makeFightInput(this,W,H);
   this.hud=this.add.graphics().setDepth(25);
-  portrait(this,'ainan-portrait',56,50,0xe8c078,65);portrait(this,`${this.boss.id}-portrait`,W-56,50,0xe18ba9,65);this.playerName=this.text(104,12,'AINAN',25,'#fff1cd').setDepth(26);
-  this.enemyName=this.text(W-104,12,this.stage===1?'MALIHA':'MINI MALIHA',25,'#ffe0ec').setOrigin(1,0).setDepth(26);
-  this.objective=this.text(W/2,12,'THE RESCUE',20,'#ffe4a6').setOrigin(.5,0).setDepth(26);
-  this.sub=this.text(W/2,43,this.stage===1?'PHASE I — SERPENT QUEEN':'Defeat Mini Maliha',14,'#ffffff').setOrigin(.5,0).setDepth(26);
-  this.ammoText=this.text(104,71,'',19,'#ffe9a1').setDepth(26);
-  this.comboText=this.text(W/2,104,'',26,'#fff0a1').setOrigin(.5).setDepth(26);
+  portrait(this,'ainan-portrait',56,57,0xe8c078,72);portrait(this,`${this.boss.id}-portrait`,W-56,57,0xe18ba9,72);this.playerName=this.text(104,12,'AINAN',29,'#fff1cd').setDepth(26);
+  this.enemyName=this.text(W-104,12,this.stage===1?'MALIHA':'MINI MALIHA',29,'#ffe0ec').setOrigin(1,0).setDepth(26);
+  this.objective=this.text(W/2,12,'THE RESCUE',24,'#ffe4a6').setOrigin(.5,0).setDepth(26);
+  this.sub=this.text(W/2,43,this.stage===1?'PHASE I — SERPENT QUEEN':'Defeat Mini Maliha',17,'#ffffff').setOrigin(.5,0).setDepth(26);
+  this.ammoText=this.text(104,80,'',22,'#ffe9a1').setDepth(26);
+  this.comboText=this.text(W/2,117,'',30,'#fff0a1').setOrigin(.5).setDepth(26);
   this.tip=this.text(W/2,H-12,'AETHER CLASH by Bang Tutorial • Adapted • CC BY-NC 4.0',10,'#ffffff').setOrigin(.5,1).setDepth(101);
   this.audio=new AudioDirector(this);this.audioStarted=false;this.audio.setTrack('final-battle');
   const soundButton=this.text(W/2,70,'♪ MUSIC: ON',12,'#ffffff').setOrigin(.5).setDepth(90).setInteractive({useHandCursor:true});
@@ -116,8 +116,8 @@ export class BossBattleScene extends Phaser.Scene {
   this.audio?.cue(guarded?'guard':strong?'heavy':'hit');target.hp=Math.max(0,target.hp-hit);target.attack=null;if(!guarded)target.guard=false;target.chainUntil=-1;target.dashUntil=0;target.stun=this.now+(guarded?100:strong?340:230);target.invulnerable=this.now+(guarded?95:125);target.vx=dir*(guarded?65:strong?380:230);if(strong&&!guarded&&target.hp>0)target.vy=-165;this.pose(target,target.hp?(guarded?'crouch':'hurt'):'down');
   target.sprite.setTint(guarded?0xb1d9ff:0xffb6a6);this.time.delayedCall(115,()=>{if(target.sprite.active)target.sprite.clearTint();});
   this.cameras.main.shake(strong?140:80,guarded?.001:strong?.005:.0025);impactSparks(this,target.x-dir*30,target.y-100,dir,strong,guarded);impactPause(this,[this.player.sprite,this.boss.sprite],guarded?28:strong?88:45);
-  this.floatText(target.x,target.y-160,guarded?'GUARD '+hit:strong?'POWER '+hit:String(hit),guarded?'#bde4ff':'#fff1ad');
-  if(source===this.player&&!guarded){this.energy=Math.min(100,this.energy+hit*1.6);this.combo=this.now<this.comboUntil?this.combo+1:1;this.comboUntil=this.now+1100;}
+  this.floatText(target.x,target.y-160,guarded?'GUARD '+hit:strong?'BONK! '+hit:String(hit),guarded?'#bde4ff':'#fff1ad');
+  if(source===this.player&&!guarded){if(strong)this.audio?.cue('meme-bonk',.38,1200);this.energy=Math.min(100,this.energy+hit*1.6);this.combo=this.now<this.comboUntil?this.combo+1:1;this.comboUntil=this.now+1100;}
   return !guarded;
  }
  floatText(x,y,value,color){const t=this.text(x,y,value,24,color).setOrigin(.5).setDepth(12);this.tweens.add({targets:t,y:y-60,alpha:0,duration:600,onComplete:()=>t.destroy()});}
@@ -154,10 +154,10 @@ export class BossBattleScene extends Phaser.Scene {
   else if(c.attackPressed){const state=nextBasic(p,this.now);if(this.beginAttack(p,state,ATTACKS[state],'solan-'+ATTACKS[state].fx))input.consume('attack');}
  }
  enemyControl(dt){this.director.control(dt);}
- drawHud(dt=0){const p=this.player,b=this.boss;const hp=[p.hp/p.maxHp,b.hp/b.maxHp];if(!this.hpTrail)this.hpTrail=[...hp];this.hpTrail=this.hpTrail.map((v,i)=>Math.max(hp[i],v-dt*.96));const signature=[...hp,...this.hpTrail,this.ammo,Math.floor(this.energy)].join(':');if(signature!==this.hudSignature){this.hudSignature=signature;const g=this.hud;g.clear();const w=380;meter(g,104,46,w,20,hp[0],0xd4a950,{trail:this.hpTrail[0]});meter(g,W-104-w,46,w,20,hp[1],0xd85b87,{reverse:true,trail:this.hpTrail[1]});meter(g,104,99,220,9,this.energy/100,0xfbd263);setTextIfChanged(this.playerName,`AINAN  ${Math.ceil(p.hp)}/${p.maxHp}`);setTextIfChanged(this.enemyName,`${this.stage===1?'MALIHA':'MINI MALIHA'}  ${Math.ceil(b.hp)}/${b.maxHp}`);setTextIfChanged(this.ammoText,`SHOTS ${this.ammo}   •   ULT ${Math.floor(this.energy)}%`);}setTextIfChanged(this.comboText,this.combo>1&&this.now<this.comboUntil?`${this.combo} HIT COMBO`:'');}
+ drawHud(dt=0){const p=this.player,b=this.boss;const hp=[p.hp/p.maxHp,b.hp/b.maxHp];if(!this.hpTrail)this.hpTrail=[...hp];this.hpTrail=this.hpTrail.map((v,i)=>Math.max(hp[i],v-dt*.96));const signature=[...hp,...this.hpTrail,this.ammo,Math.floor(this.energy)].join(':');if(signature!==this.hudSignature){this.hudSignature=signature;const g=this.hud;g.clear();const w=390;hudPlate(g,10,5,508,120,0xe0b963);hudPlate(g,W-518,5,508,84,0xd85b87);meter(g,104,47,w,26,hp[0],hp[0]<.25?0xff667c:0x51d8a0,{trail:this.hpTrail[0]});meter(g,W-104-w,47,w,26,hp[1],0xd85b87,{reverse:true,trail:this.hpTrail[1]});meter(g,104,110,390,9,this.energy/100,0xfbd263);setTextIfChanged(this.playerName,`AINAN  ${Math.ceil(p.hp)}/${p.maxHp}`);setTextIfChanged(this.enemyName,`${this.stage===1?'MALIHA':'MINI MALIHA'}  ${Math.ceil(b.hp)}/${b.maxHp}`);setTextIfChanged(this.ammoText,`AMMO ${this.ammo}    •    ${this.energy>=100?"ULT READY!":"ULT "+Math.floor(this.energy)+"%"}`);}setTextIfChanged(this.comboText,this.combo>1&&this.now<this.comboUntil?`${this.combo} HIT COMBO${this.combo>=3?'  •  COOKED!':''}`:'');}
 
  advance(){this.director?.clear();this.transition=true;this.sfx('announcer-ko');this.boss.vx=0;this.floatText(W/2,250,'MINI MALIHA DEFEATED','#ffe39b');this.time.delayedCall(1100,()=>chapterWipe(this,W,H,()=>this.scene.start('StoryScene',{chapter:'final',payload:{stage:1,bananas:this.collectedBananas,ammo:this.ammo+3,energy:this.energy,hp:Math.min(100,Math.max(65,this.player.hp+35))}})));}
- finish(win){if(this.finished)return;this.director?.clear();this.finished=true;this.sfx('announcer-ko');this.audio?.setTrack(win?'music-victory':null);this.inputState.clear();if(win){this.time.delayedCall(1000,()=>chapterWipe(this,W,H,()=>this.scene.start('StoryScene',{chapter:'ending',payload:{bananas:this.collectedBananas}})));return;}const veil=this.add.rectangle(W/2,H/2,650,180,0x10131c,.86).setDepth(110);this.text(W/2,H/2-45,'K.O. — TRY AGAIN',40,'#ffe7ae').setOrigin(.5).setDepth(111);const retry=this.text(W/2,H/2+40,'RETRY BATTLE',21).setOrigin(.5).setDepth(111).setInteractive({useHandCursor:true});let restarting=false;const again=()=>{if(restarting)return;restarting=true;this.scene.restart({stage:this.startStage,bananas:this.collectedBananas,ammo:this.startAmmo,energy:this.startEnergy,hp:this.startHp});};retry.on('pointerdown',again);this.input.keyboard.once('keydown-ENTER',again);this.events.once('shutdown',()=>this.input.keyboard.off('keydown-ENTER',again));}
+ finish(win){if(this.finished)return;this.director?.clear();this.finished=true;this.sfx('announcer-ko');this.audio?.setTrack(win?'music-victory':null);this.audio?.cue(win?'victory':'meme-faa',.55,1200);this.inputState.clear();if(win){this.time.delayedCall(1000,()=>chapterWipe(this,W,H,()=>this.scene.start('StoryScene',{chapter:'ending',payload:{bananas:this.collectedBananas}})));return;}const veil=this.add.rectangle(W/2,H/2,650,180,0x10131c,.86).setDepth(110);this.text(W/2,H/2-45,'K.O. — TRY AGAIN',40,'#ffe7ae').setOrigin(.5).setDepth(111);const retry=this.text(W/2,H/2+40,'RETRY BATTLE',21).setOrigin(.5).setDepth(111).setInteractive({useHandCursor:true});let restarting=false;const again=()=>{if(restarting)return;restarting=true;this.scene.restart({stage:this.startStage,bananas:this.collectedBananas,ammo:this.startAmmo,energy:this.startEnergy,hp:this.startHp});};retry.on('pointerdown',again);this.input.keyboard.once('keydown-ENTER',again);this.events.once('shutdown',()=>this.input.keyboard.off('keydown-ENTER',again));}
  update(time,delta){if(this.sceneFailed)return;try{this.updateArena(time,delta);}catch(error){this.showSceneError(error);}}
  updateArena(_,delta){const c=this.inputState.sample();if(this.cinematic?.update())return;const dt=combatFrame(this,delta);if(!dt||this.finished)return;this.now=this.combatNow;if(!this.started)this.start();this.activateAudio();
   if(!this.transition){this.playerControl(c,dt);if(this.cinematic?.active)return;this.enemyControl(dt);if(this.cinematic?.active)return;this.impact(this.player,this.boss);if(this.boss.hp>0)this.impact(this.boss,this.player);this.stepProjectiles(dt);if(this.boss.hp>0&&this.player.hp>0)this.director.update(dt);}else{this.player.vx=0;}

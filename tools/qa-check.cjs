@@ -22,7 +22,7 @@ async function main(){
  const font='fonts/Rajdhani-Bold.ttf';check(exists(path.join(assetRoot,font)),'Missing font: '+font,true);
  const sources=walk(path.join(root,'src')).filter(p=>p.endsWith('.js'));for(const p of sources){const r=spawnSync(process.execPath,['--check',p],{cwd:root,encoding:'utf8'});if(!check(r.status===0,'Syntax error: '+path.relative(root,p)))console.log(r.stderr);}
  console.log(`[INFO] Checked syntax of ${sources.length} files and ${keys.size} manifest entries.`);
- for(const id of ['7c','7d','7e','7f','7g','7h','8a','8b','8c','8d','8e','8f']){const p=path.join(root,'tests',`phase${id}.mjs`);if(!check(exists(p),'Missing regression test: phase'+id))continue;const r=spawnSync(process.execPath,[p],{cwd:root,encoding:'utf8'});console.log(r.stdout.trim());if(!check(r.status===0,'Test failed: phase'+id))console.log(r.stderr);}
+ for(const id of ['7c','7d','7e','7f','7g','7h','8a','8b','8c','8d','8e','8f','11']){const p=path.join(root,'tests',`phase${id}.mjs`);if(!check(exists(p),'Missing regression test: phase'+id))continue;const r=spawnSync(process.execPath,[p],{cwd:root,encoding:'utf8'});console.log(r.stdout.trim());if(!check(r.status===0,'Test failed: phase'+id))console.log(r.stderr);}
  console.log(`\nQA CHECK: ${failures} failures, ${warnings} warnings`);console.log('Browser playtesting and actual GPU/FPS measurements are still required.');if(failures)process.exitCode=1;
 }
 main().catch(e=>{console.error('QA could not complete:',e);process.exitCode=1;});
