@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {EventEmitter} from 'node:events';
+const key='monkey-mind-iii.profile.v1', backup=key+'.backup', mem=new Map();
+globalThis.localStorage={getItem:k=>mem.get(k)??null,setItem:(k,v)=>mem.set(k,v),removeItem:k=>mem.delete(k)};
+const P=await import('../src/systems/CampaignProfile.js');
+assert.equal(P.normalize({save:{chapter:'mini',payload:null}}).save.payload.hp,100);
+const cp={x:4600,hp:70,ammo:5,energy:30,bananas:['513:390','513:390','fake'],potions:[1550,1550,5],enemies:[950,950,3]};
+P.markChapter('chase',{},cp);assert.deepEqual(P.profile.save.checkpoint,{...cp,bananas:['513:390'],potions:[1550],enemies:[950]});assert.equal(P.normalize({save:{chapter:'chase',checkpoint:{...cp,x:2280}}}).save.checkpoint,null);
+assert.equal(mem.get(key),mem.get(backup));mem.set(key,'{corrupted');let r=await import('../src/systems/CampaignProfile.js?corrupt');assert(r.recoveredFromBackup);assert.equal(r.profile.save.checkpoint.x,4600);r.persist();assert.equal(mem.get(key),mem.get(backup));
+P.completeCampaign();mem.set(key,'null');r=await import('../src/systems/CampaignProfile.js?completed');assert(r.recoveredFromBackup);assert.equal(r.profile.save,null);assert.equal(r.profile.completed,1);
+const source=(name,clazz,ctx)=>vm.runInNewContext(fs.readFileSync(new URL('../src/scenes/'+name+'.js',import.meta.url),'utf8').replace(/^import .*;\s*$/gm,'').replace('export class '+clazz,'class '+clazz).replaceAll('export function','function')+'\n'+clazz,{Phaser:{Scene:class{}},W:1280,H:720,...ctx});
+let reload=0,starts=0,delayed;
+class Obj extends EventEmitter{setOrigin(){return this}setInteractive(){return this}setText(t){this.text=t;return this}setColor(){return this}}
+const manifest={images:[{key:'bg'}],atlases:[{key:'hero'}],audio:[{key:'music'}]};
+const Preload=source('PreloadScene','PreloadScene',{assetManifest:manifest,GAME_WIDTH:1280,GAME_HEIGHT:720,location:{reload:()=>reload++},console:{error(){},warn(){}}});
+const p=new Preload();let button;Object.assign(p,{failedAssets:[],failedAudio:[],textures:{exists:k=>k==='hero'},cache:{audio:{exists:()=>false}},status:new Obj(),add:{text:()=>button=new Obj()},time:{delayedCall:(ms,fn)=>delayed=fn},scene:{start:()=>starts++}});p.create();assert.match(p.status.text,/bg/);assert.equal(delayed,undefined);button.emit('pointerdown');button.emit('pointerdown');assert.equal(reload,1);p.textures.exists=()=>true;p.create();assert.match(p.status.text,/audio is unavailable/);delayed();assert.equal(starts,1);
+const Chase=source('ChaseScene','ChaseScene',{});const c=new Chase();let restarts=0;Object.assign(c,{notice:new Obj(),input:{keyboard:new EventEmitter()},events:new EventEmitter(),scene:{restart:()=>restarts++},checkpoint:cp});c.end(false);c.notice.emit('pointerdown');c.input.keyboard.emit('keydown-ENTER');assert.equal(restarts,1);
+const Menu=source('MenuScene','MenuScene',{});const m=new Menu();m.ownerKey='BossBattleScene';m.owner={startStage:1,startHp:55,startAmmo:3,startEnergy:0,collectedBananas:52};let target;m.travel=t=>target=t;m.restartOwner();assert.equal(target.data.hp,55);
+console.log('PASS: null payload, invalid checkpoint rejection, collectible validation/deduplication, backup recovery, completed campaign recovery, required artwork diagnostics, optional audio fallback, duplicate retry prevention, difficulty-consistent boss restart.');

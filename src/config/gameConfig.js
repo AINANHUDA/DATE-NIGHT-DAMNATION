@@ -1,11 +1,16 @@
-
+/** MONKEY MIND III | MODULE
+ * Canvas dimensions, renderer, scaling, physics and pointer settings.
+ * Customization map: docs/CUSTOMIZATION.md
+ */
 import Phaser from 'phaser';
 
 export const GAME_WIDTH = 1280;
 export const GAME_HEIGHT = 720;
 
 export const gameConfig = {
+
     type: Phaser.AUTO,
+
     parent: 'app',
 
     width: GAME_WIDTH,
@@ -13,9 +18,14 @@ export const gameConfig = {
 
     backgroundColor: '#101418',
 
-    pixelArt: true,
-    antialias: false,
+    pixelArt: false,
+    antialias: true,
     roundPixels: true,
+
+    render: {
+        antialias: true,
+        antialiasGL: true
+    },
 
     scale: {
         mode: Phaser.Scale.FIT,
@@ -24,8 +34,12 @@ export const gameConfig = {
 
     physics: {
         default: 'arcade',
+
         arcade: {
-            gravity: { y: 900 },
+            gravity: {
+                y: 900
+            },
+
             debug: false
         }
     },
@@ -45,4 +59,5 @@ export const gameConfig = {
     audio: {
         disableWebAudio: false
     }
+
 };

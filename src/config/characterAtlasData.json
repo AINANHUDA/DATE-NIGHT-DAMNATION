@@ -1,0 +1,3618 @@
+{
+  "ainan": {
+    "id": "ainan",
+    "original": "solan",
+    "texture": "ainan-atlas",
+    "image": "characters/ainan/sprites/atlas-compact.webp",
+    "atlas": "characters/ainan/sprites/atlas-compact.json",
+    "anchor": {
+      "x": 224,
+      "y": 280
+    },
+    "cellWidth": 448,
+    "cellHeight": 288,
+    "animations": {
+      "idle": {
+        "frames": [
+          "idle-0",
+          "idle-1",
+          "idle-2",
+          "idle-3"
+        ],
+        "fps": 5,
+        "repeat": -1,
+        "durationsMs": [
+          200,
+          200,
+          200,
+          200
+        ]
+      },
+      "walk": {
+        "frames": [
+          "walk-0",
+          "walk-1",
+          "walk-2",
+          "walk-3"
+        ],
+        "fps": 9,
+        "repeat": -1,
+        "durationsMs": [
+          111,
+          111,
+          111,
+          111
+        ]
+      },
+      "run": {
+        "frames": [
+          "run-0",
+          "run-1",
+          "run-2",
+          "run-3"
+        ],
+        "fps": 11,
+        "repeat": -1,
+        "durationsMs": [
+          91,
+          91,
+          91,
+          91
+        ]
+      },
+      "jump": {
+        "frames": [
+          "jump-0"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100
+        ]
+      },
+      "doublejump": {
+        "frames": [
+          "doublejump-0"
+        ],
+        "fps": 12,
+        "repeat": 0,
+        "durationsMs": [
+          83
+        ]
+      },
+      "crouch": {
+        "frames": [
+          "crouch-0",
+          "crouch-1",
+          "crouch-2",
+          "crouch-3"
+        ],
+        "fps": 8,
+        "repeat": 0,
+        "durationsMs": [
+          125,
+          125,
+          125,
+          125
+        ]
+      },
+      "attack1": {
+        "frames": [
+          "attack1-0",
+          "attack1-1",
+          "attack1-2",
+          "attack1-3"
+        ],
+        "fps": 11,
+        "repeat": 0,
+        "durationsMs": [
+          91,
+          91,
+          91,
+          91
+        ]
+      },
+      "attack2": {
+        "frames": [
+          "attack2-0",
+          "attack2-1",
+          "attack2-2",
+          "attack2-3"
+        ],
+        "fps": 11,
+        "repeat": 0,
+        "durationsMs": [
+          91,
+          91,
+          91,
+          91
+        ]
+      },
+      "attack3": {
+        "frames": [
+          "attack3-0",
+          "attack3-1",
+          "attack3-2",
+          "attack3-3"
+        ],
+        "fps": 9,
+        "repeat": 0,
+        "durationsMs": [
+          111,
+          111,
+          111,
+          111
+        ]
+      },
+      "skill1": {
+        "frames": [
+          "skill1-0",
+          "skill1-1",
+          "skill1-2",
+          "skill1-3"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "skill2": {
+        "frames": [
+          "skill2-0",
+          "skill2-1",
+          "skill2-2",
+          "skill2-3"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "ultimate": {
+        "frames": [
+          "ultimate-0",
+          "ultimate-1",
+          "ultimate-2",
+          "ultimate-3"
+        ],
+        "fps": 8,
+        "repeat": 0,
+        "durationsMs": [
+          125,
+          125,
+          125,
+          125
+        ]
+      },
+      "hurt": {
+        "frames": [
+          "hurt-0",
+          "hurt-1",
+          "hurt-2",
+          "hurt-3"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "down": {
+        "frames": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "down-3"
+        ],
+        "fps": 8,
+        "repeat": 0,
+        "durationsMs": [
+          125,
+          125,
+          125,
+          125
+        ]
+      },
+      "recover": {
+        "frames": [
+          "recover-0",
+          "recover-1",
+          "recover-2",
+          "recover-3"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    },
+    "metrics": {
+      "anchor": {
+        "x": 224,
+        "y": 280
+      },
+      "states": {
+        "idle": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -85,
+                "right": 69,
+                "top": -175,
+                "bottom": 0
+              },
+              "height": 175
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -83,
+                "right": 70,
+                "top": -176,
+                "bottom": 0
+              },
+              "height": 176
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -85,
+                "right": 68,
+                "top": -175,
+                "bottom": 0
+              },
+              "height": 175
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -86,
+                "right": 69,
+                "top": -176,
+                "bottom": 0
+              },
+              "height": 176
+            }
+          ]
+        },
+        "walk": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -75,
+                "right": 71,
+                "top": -171,
+                "bottom": 0
+              },
+              "height": 171
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -71,
+                "right": 71,
+                "top": -172,
+                "bottom": 0
+              },
+              "height": 172
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -74,
+                "right": 70,
+                "top": -172,
+                "bottom": 0
+              },
+              "height": 172
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -72,
+                "right": 70,
+                "top": -172,
+                "bottom": 0
+              },
+              "height": 172
+            }
+          ]
+        },
+        "run": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -94,
+                "right": 65,
+                "top": -143,
+                "bottom": 0
+              },
+              "height": 143
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -91,
+                "right": 60,
+                "top": -139,
+                "bottom": 0
+              },
+              "height": 139
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -97,
+                "right": 57,
+                "top": -143,
+                "bottom": 0
+              },
+              "height": 143
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -91,
+                "right": 60,
+                "top": -143,
+                "bottom": 0
+              },
+              "height": 143
+            }
+          ]
+        },
+        "jump": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -129,
+                "right": 51,
+                "top": -197,
+                "bottom": 0
+              },
+              "height": 197
+            }
+          ]
+        },
+        "doublejump": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -104,
+                "right": 50,
+                "top": -160,
+                "bottom": 0
+              },
+              "height": 160
+            }
+          ]
+        },
+        "crouch": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -87,
+                "right": 73,
+                "top": -155,
+                "bottom": 0
+              },
+              "height": 155
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -85,
+                "right": 63,
+                "top": -145,
+                "bottom": 0
+              },
+              "height": 145
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -85,
+                "right": 62,
+                "top": -145,
+                "bottom": 0
+              },
+              "height": 145
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -84,
+                "right": 55,
+                "top": -155,
+                "bottom": 0
+              },
+              "height": 155
+            }
+          ]
+        },
+        "attack1": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -116,
+                "right": 68,
+                "top": -161,
+                "bottom": 0
+              },
+              "height": 161
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -89,
+                "right": 64,
+                "top": -178,
+                "bottom": 0
+              },
+              "height": 178
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -80,
+                "right": 149,
+                "top": -158,
+                "bottom": 0
+              },
+              "height": 158
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -83,
+                "right": 68,
+                "top": -167,
+                "bottom": 0
+              },
+              "height": 167
+            }
+          ]
+        },
+        "attack2": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -93,
+                "right": 81,
+                "top": -151,
+                "bottom": 0
+              },
+              "height": 151
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -85,
+                "right": 82,
+                "top": -181,
+                "bottom": 0
+              },
+              "height": 181
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -87,
+                "right": 95,
+                "top": -206,
+                "bottom": 0
+              },
+              "height": 206
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -85,
+                "right": 68,
+                "top": -167,
+                "bottom": 0
+              },
+              "height": 167
+            }
+          ]
+        },
+        "attack3": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -90,
+                "right": 70,
+                "top": -214,
+                "bottom": 0
+              },
+              "height": 214
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -107,
+                "right": 87,
+                "top": -169,
+                "bottom": 0
+              },
+              "height": 169
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -109,
+                "right": 74,
+                "top": -154,
+                "bottom": 0
+              },
+              "height": 154
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -85,
+                "right": 68,
+                "top": -220,
+                "bottom": 0
+              },
+              "height": 220
+            }
+          ]
+        },
+        "skill1": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -118,
+                "right": 79,
+                "top": -165,
+                "bottom": 0
+              },
+              "height": 165
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -109,
+                "right": 69,
+                "top": -185,
+                "bottom": 0
+              },
+              "height": 185
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -88,
+                "right": 156,
+                "top": -171,
+                "bottom": 0
+              },
+              "height": 171
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -85,
+                "right": 69,
+                "top": -179,
+                "bottom": 0
+              },
+              "height": 179
+            }
+          ]
+        },
+        "skill2": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -77,
+                "right": 74,
+                "top": -182,
+                "bottom": 0
+              },
+              "height": 182
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -89,
+                "right": 68,
+                "top": -179,
+                "bottom": 0
+              },
+              "height": 179
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -93,
+                "right": 60,
+                "top": -142,
+                "bottom": 0
+              },
+              "height": 142
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -82,
+                "right": 71,
+                "top": -182,
+                "bottom": 0
+              },
+              "height": 182
+            }
+          ]
+        },
+        "ultimate": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -81,
+                "right": 57,
+                "top": -173,
+                "bottom": 0
+              },
+              "height": 173
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -90,
+                "right": 60,
+                "top": -173,
+                "bottom": 0
+              },
+              "height": 173
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -82,
+                "right": 66,
+                "top": -177,
+                "bottom": 0
+              },
+              "height": 177
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -86,
+                "right": 65,
+                "top": -174,
+                "bottom": 0
+              },
+              "height": 174
+            }
+          ]
+        },
+        "hurt": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -98,
+                "right": 72,
+                "top": -173,
+                "bottom": 0
+              },
+              "height": 173
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -73,
+                "right": 76,
+                "top": -165,
+                "bottom": 0
+              },
+              "height": 165
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -110,
+                "right": 69,
+                "top": -181,
+                "bottom": 0
+              },
+              "height": 181
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -80,
+                "right": 62,
+                "top": -157,
+                "bottom": 0
+              },
+              "height": 157
+            }
+          ]
+        },
+        "down": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -63,
+                "right": 84,
+                "top": -152,
+                "bottom": 0
+              },
+              "height": 152
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -67,
+                "right": 92,
+                "top": -143,
+                "bottom": 0
+              },
+              "height": 143
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -76,
+                "right": 79,
+                "top": -90,
+                "bottom": 0
+              },
+              "height": 90
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -74,
+                "right": 81,
+                "top": -112,
+                "bottom": 0
+              },
+              "height": 112
+            }
+          ]
+        },
+        "recover": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -97,
+                "right": 92,
+                "top": -117,
+                "bottom": 0
+              },
+              "height": 117
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -90,
+                "right": 67,
+                "top": -131,
+                "bottom": 0
+              },
+              "height": 131
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -82,
+                "right": 66,
+                "top": -154,
+                "bottom": 0
+              },
+              "height": 154
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -89,
+                "right": 71,
+                "top": -171,
+                "bottom": 0
+              },
+              "height": 171
+            }
+          ]
+        }
+      },
+      "playback": {
+        "jump": {
+          "airFrame": 0,
+          "torsoPivot": {
+            "x": -39,
+            "y": -98
+          }
+        },
+        "doublejump": {
+          "frame": 0,
+          "duration": 0.28,
+          "pivot": {
+            "x": -27,
+            "y": -80
+          }
+        },
+        "measurement": "Centers measured from final curated atlas, including integer air-pose alignment; no runtime resizing."
+      },
+      "emitters": {
+        "attack1": {
+          "x": 149,
+          "y": -85,
+          "frame": 2,
+          "method": "Blade tip on impact frame (farthest-right six-pixel tip; top-right extreme for the rising slash), facing right"
+        },
+        "attack2": {
+          "x": 95,
+          "y": -206,
+          "frame": 2,
+          "method": "Blade tip on impact frame (farthest-right six-pixel tip; top-right extreme for the rising slash), facing right"
+        },
+        "attack3": {
+          "x": 74,
+          "y": -4,
+          "frame": 2,
+          "method": "Blade tip on impact frame (farthest-right six-pixel tip; top-right extreme for the rising slash), facing right"
+        },
+        "skill1": {
+          "x": 156,
+          "y": -93,
+          "frame": 2,
+          "method": "Blade tip on impact frame (farthest-right six-pixel tip; top-right extreme for the rising slash), facing right"
+        },
+        "skill2": {
+          "x": 60,
+          "y": -48,
+          "frame": 2,
+          "method": "Blade tip on impact frame (farthest-right six-pixel tip; top-right extreme for the rising slash), facing right"
+        },
+        "ultimate": {
+          "x": 66,
+          "y": -6,
+          "frame": 2,
+          "method": "Blade tip on impact frame (farthest-right six-pixel tip; top-right extreme for the rising slash), facing right"
+        }
+      }
+    }
+  },
+  "jennifer": {
+    "id": "jennifer",
+    "original": "cora",
+    "texture": "jennifer-atlas",
+    "image": "characters/jennifer/sprites/atlas-compact.webp",
+    "atlas": "characters/jennifer/sprites/atlas-compact.json",
+    "anchor": {
+      "x": 224,
+      "y": 280
+    },
+    "cellWidth": 448,
+    "cellHeight": 288,
+    "animations": {
+      "idle": {
+        "frames": [
+          "idle-0",
+          "idle-1",
+          "idle-2",
+          "idle-3"
+        ],
+        "fps": 5,
+        "repeat": -1,
+        "durationsMs": [
+          200,
+          200,
+          200,
+          200
+        ]
+      },
+      "walk": {
+        "frames": [
+          "walk-0",
+          "walk-1",
+          "walk-2",
+          "walk-3"
+        ],
+        "fps": 10,
+        "repeat": -1,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "run": {
+        "frames": [
+          "run-0",
+          "run-1",
+          "run-2",
+          "run-3"
+        ],
+        "fps": 13,
+        "repeat": -1,
+        "durationsMs": [
+          77,
+          77,
+          77,
+          77
+        ]
+      },
+      "jump": {
+        "frames": [
+          "jump-0"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100
+        ]
+      },
+      "doublejump": {
+        "frames": [
+          "doublejump-0"
+        ],
+        "fps": 12,
+        "repeat": 0,
+        "durationsMs": [
+          83
+        ]
+      },
+      "crouch": {
+        "frames": [
+          "crouch-0",
+          "crouch-1",
+          "crouch-2",
+          "crouch-3"
+        ],
+        "fps": 8,
+        "repeat": 0,
+        "durationsMs": [
+          125,
+          125,
+          125,
+          125
+        ]
+      },
+      "attack1": {
+        "frames": [
+          "attack1-0",
+          "attack1-1",
+          "attack1-2",
+          "attack1-3"
+        ],
+        "fps": 13,
+        "repeat": 0,
+        "durationsMs": [
+          77,
+          77,
+          77,
+          77
+        ]
+      },
+      "attack2": {
+        "frames": [
+          "attack2-0",
+          "attack2-1",
+          "attack2-2",
+          "attack2-3"
+        ],
+        "fps": 13,
+        "repeat": 0,
+        "durationsMs": [
+          77,
+          77,
+          77,
+          77
+        ]
+      },
+      "attack3": {
+        "frames": [
+          "attack3-0",
+          "attack3-1",
+          "attack3-2",
+          "attack3-3"
+        ],
+        "fps": 11,
+        "repeat": 0,
+        "durationsMs": [
+          91,
+          91,
+          91,
+          91
+        ]
+      },
+      "skill1": {
+        "frames": [
+          "skill1-0",
+          "skill1-1",
+          "skill1-2",
+          "skill1-3"
+        ],
+        "fps": 11,
+        "repeat": 0,
+        "durationsMs": [
+          91,
+          91,
+          91,
+          91
+        ]
+      },
+      "skill2": {
+        "frames": [
+          "skill2-0",
+          "skill2-1",
+          "skill2-2",
+          "skill2-3"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "ultimate": {
+        "frames": [
+          "ultimate-0",
+          "ultimate-1",
+          "ultimate-2",
+          "ultimate-3"
+        ],
+        "fps": 9,
+        "repeat": 0,
+        "durationsMs": [
+          111,
+          111,
+          111,
+          111
+        ]
+      },
+      "hurt": {
+        "frames": [
+          "hurt-0",
+          "hurt-1",
+          "hurt-2",
+          "hurt-3"
+        ],
+        "fps": 9,
+        "repeat": 0,
+        "durationsMs": [
+          111,
+          111,
+          111,
+          111
+        ]
+      },
+      "down": {
+        "frames": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "down-3"
+        ],
+        "fps": 7,
+        "repeat": 0,
+        "durationsMs": [
+          143,
+          143,
+          143,
+          143
+        ]
+      },
+      "recover": {
+        "frames": [
+          "recover-0",
+          "recover-1",
+          "recover-2",
+          "recover-3"
+        ],
+        "fps": 8,
+        "repeat": 0,
+        "durationsMs": [
+          125,
+          125,
+          125,
+          125
+        ]
+      }
+    },
+    "metrics": {
+      "anchor": {
+        "x": 224,
+        "y": 280
+      },
+      "states": {
+        "idle": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -78,
+                "right": 51,
+                "top": -184,
+                "bottom": 0
+              },
+              "height": 184
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -79,
+                "right": 56,
+                "top": -184,
+                "bottom": 0
+              },
+              "height": 184
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -81,
+                "right": 57,
+                "top": -183,
+                "bottom": 0
+              },
+              "height": 183
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -78,
+                "right": 52,
+                "top": -184,
+                "bottom": 0
+              },
+              "height": 184
+            }
+          ]
+        },
+        "walk": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -73,
+                "right": 62,
+                "top": -182,
+                "bottom": 0
+              },
+              "height": 182
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -71,
+                "right": 58,
+                "top": -183,
+                "bottom": 0
+              },
+              "height": 183
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -73,
+                "right": 62,
+                "top": -182,
+                "bottom": 0
+              },
+              "height": 182
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -71,
+                "right": 58,
+                "top": -183,
+                "bottom": 0
+              },
+              "height": 183
+            }
+          ]
+        },
+        "run": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -79,
+                "right": 85,
+                "top": -153,
+                "bottom": 0
+              },
+              "height": 153
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -69,
+                "right": 75,
+                "top": -155,
+                "bottom": 0
+              },
+              "height": 155
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -77,
+                "right": 88,
+                "top": -153,
+                "bottom": 0
+              },
+              "height": 153
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -71,
+                "right": 76,
+                "top": -155,
+                "bottom": 0
+              },
+              "height": 155
+            }
+          ]
+        },
+        "jump": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -109,
+                "right": 62,
+                "top": -216,
+                "bottom": 0
+              },
+              "height": 216
+            }
+          ]
+        },
+        "doublejump": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -79,
+                "right": 41,
+                "top": -136,
+                "bottom": 0
+              },
+              "height": 136
+            }
+          ]
+        },
+        "crouch": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -58,
+                "right": 67,
+                "top": -136,
+                "bottom": 0
+              },
+              "height": 136
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -66,
+                "right": 60,
+                "top": -122,
+                "bottom": 0
+              },
+              "height": 122
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -57,
+                "right": 57,
+                "top": -123,
+                "bottom": 0
+              },
+              "height": 123
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -61,
+                "right": 62,
+                "top": -137,
+                "bottom": 0
+              },
+              "height": 137
+            }
+          ]
+        },
+        "attack1": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -80,
+                "right": 59,
+                "top": -178,
+                "bottom": 0
+              },
+              "height": 178
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -84,
+                "right": 63,
+                "top": -178,
+                "bottom": 0
+              },
+              "height": 178
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -84,
+                "right": 87,
+                "top": -178,
+                "bottom": 0
+              },
+              "height": 178
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -77,
+                "right": 58,
+                "top": -178,
+                "bottom": 0
+              },
+              "height": 178
+            }
+          ]
+        },
+        "attack2": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -79,
+                "right": 66,
+                "top": -176,
+                "bottom": 0
+              },
+              "height": 176
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -77,
+                "right": 74,
+                "top": -182,
+                "bottom": 0
+              },
+              "height": 182
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -79,
+                "right": 68,
+                "top": -206,
+                "bottom": 0
+              },
+              "height": 206
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -83,
+                "right": 60,
+                "top": -175,
+                "bottom": 0
+              },
+              "height": 175
+            }
+          ]
+        },
+        "attack3": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -52,
+                "right": 51,
+                "top": -188,
+                "bottom": 0
+              },
+              "height": 188
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -99,
+                "right": 85,
+                "top": -189,
+                "bottom": 0
+              },
+              "height": 189
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -113,
+                "right": 115,
+                "top": -203,
+                "bottom": 0
+              },
+              "height": 203
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -69,
+                "right": 54,
+                "top": -188,
+                "bottom": 0
+              },
+              "height": 188
+            }
+          ]
+        },
+        "skill1": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -83,
+                "right": 64,
+                "top": -172,
+                "bottom": 0
+              },
+              "height": 172
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -110,
+                "right": 61,
+                "top": -172,
+                "bottom": 0
+              },
+              "height": 172
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -91,
+                "right": 101,
+                "top": -173,
+                "bottom": 0
+              },
+              "height": 173
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -80,
+                "right": 64,
+                "top": -172,
+                "bottom": 0
+              },
+              "height": 172
+            }
+          ]
+        },
+        "skill2": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -113,
+                "right": 68,
+                "top": -236,
+                "bottom": 0
+              },
+              "height": 236
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -79,
+                "right": 95,
+                "top": -188,
+                "bottom": 0
+              },
+              "height": 188
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -105,
+                "right": 93,
+                "top": -175,
+                "bottom": 0
+              },
+              "height": 175
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -78,
+                "right": 59,
+                "top": -184,
+                "bottom": 0
+              },
+              "height": 184
+            }
+          ]
+        },
+        "ultimate": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -61,
+                "right": 55,
+                "top": -178,
+                "bottom": 0
+              },
+              "height": 178
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -104,
+                "right": 74,
+                "top": -178,
+                "bottom": 0
+              },
+              "height": 178
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -95,
+                "right": 58,
+                "top": -216,
+                "bottom": 0
+              },
+              "height": 216
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -93,
+                "right": 58,
+                "top": -216,
+                "bottom": 0
+              },
+              "height": 216
+            }
+          ]
+        },
+        "hurt": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -92,
+                "right": 59,
+                "top": -172,
+                "bottom": 0
+              },
+              "height": 172
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -73,
+                "right": 50,
+                "top": -177,
+                "bottom": 0
+              },
+              "height": 177
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -65,
+                "right": 63,
+                "top": -158,
+                "bottom": 0
+              },
+              "height": 158
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -79,
+                "right": 56,
+                "top": -177,
+                "bottom": 0
+              },
+              "height": 177
+            }
+          ]
+        },
+        "down": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -64,
+                "right": 65,
+                "top": -151,
+                "bottom": 0
+              },
+              "height": 151
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -75,
+                "right": 72,
+                "top": -110,
+                "bottom": 0
+              },
+              "height": 110
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -71,
+                "right": 92,
+                "top": -59,
+                "bottom": 0
+              },
+              "height": 59
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -73,
+                "right": 90,
+                "top": -56,
+                "bottom": 0
+              },
+              "height": 56
+            }
+          ]
+        },
+        "recover": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -72,
+                "right": 98,
+                "top": -60,
+                "bottom": 0
+              },
+              "height": 60
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -75,
+                "right": 70,
+                "top": -113,
+                "bottom": 0
+              },
+              "height": 113
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -71,
+                "right": 75,
+                "top": -146,
+                "bottom": 0
+              },
+              "height": 146
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -80,
+                "right": 63,
+                "top": -182,
+                "bottom": 0
+              },
+              "height": 182
+            }
+          ]
+        }
+      },
+      "playback": {
+        "jump": {
+          "airFrame": 0,
+          "torsoPivot": {
+            "x": -24,
+            "y": -108
+          }
+        },
+        "doublejump": {
+          "frame": 0,
+          "duration": 0.28,
+          "pivot": {
+            "x": -19,
+            "y": -68
+          }
+        },
+        "measurement": "Centers measured from final curated atlas, including integer air-pose alignment; no runtime resizing."
+      },
+      "emitters": {
+        "attack1": {
+          "x": 87,
+          "y": -130,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame; six-pixel tip region, facing right"
+        },
+        "attack2": {
+          "x": 68,
+          "y": -204,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame; six-pixel tip region, facing right"
+        },
+        "attack3": {
+          "x": 115,
+          "y": -188,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame; six-pixel tip region, facing right"
+        },
+        "skill1": {
+          "x": 101,
+          "y": -144,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame; six-pixel tip region, facing right"
+        },
+        "skill2": {
+          "x": 93,
+          "y": -122,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame; six-pixel tip region, facing right"
+        }
+      }
+    }
+  },
+  "maliha": {
+    "id": "maliha",
+    "original": "naja",
+    "texture": "maliha-atlas",
+    "image": "characters/maliha/sprites/atlas-compact.webp",
+    "atlas": "characters/maliha/sprites/atlas-compact.json",
+    "anchor": {
+      "x": 224,
+      "y": 280
+    },
+    "cellWidth": 448,
+    "cellHeight": 288,
+    "animations": {
+      "idle": {
+        "frames": [
+          "idle-0",
+          "idle-1",
+          "idle-2",
+          "idle-3"
+        ],
+        "fps": 5,
+        "repeat": -1,
+        "durationsMs": [
+          200,
+          200,
+          200,
+          200
+        ]
+      },
+      "walk": {
+        "frames": [
+          "walk-0",
+          "walk-1",
+          "walk-2",
+          "walk-3"
+        ],
+        "fps": 10,
+        "repeat": -1,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "run": {
+        "frames": [
+          "run-0",
+          "run-1",
+          "run-2",
+          "run-3"
+        ],
+        "fps": 13,
+        "repeat": -1,
+        "durationsMs": [
+          77,
+          77,
+          77,
+          77
+        ]
+      },
+      "jump": {
+        "frames": [
+          "jump-0"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100
+        ]
+      },
+      "doublejump": {
+        "frames": [
+          "doublejump-0"
+        ],
+        "fps": 12,
+        "repeat": 0,
+        "durationsMs": [
+          83
+        ]
+      },
+      "crouch": {
+        "frames": [
+          "crouch-0",
+          "crouch-1",
+          "crouch-2",
+          "crouch-3"
+        ],
+        "fps": 8,
+        "repeat": 0,
+        "durationsMs": [
+          125,
+          125,
+          125,
+          125
+        ]
+      },
+      "attack1": {
+        "frames": [
+          "attack1-0",
+          "attack1-1",
+          "attack1-2",
+          "attack1-3"
+        ],
+        "fps": 13,
+        "repeat": 0,
+        "durationsMs": [
+          77,
+          77,
+          77,
+          77
+        ]
+      },
+      "attack2": {
+        "frames": [
+          "attack2-0",
+          "attack2-1",
+          "attack2-2",
+          "attack2-3"
+        ],
+        "fps": 13,
+        "repeat": 0,
+        "durationsMs": [
+          77,
+          77,
+          77,
+          77
+        ]
+      },
+      "attack3": {
+        "frames": [
+          "attack3-0",
+          "attack3-1",
+          "attack3-2",
+          "attack3-3"
+        ],
+        "fps": 11,
+        "repeat": 0,
+        "durationsMs": [
+          91,
+          91,
+          91,
+          91
+        ]
+      },
+      "skill1": {
+        "frames": [
+          "skill1-0",
+          "skill1-1",
+          "skill1-2",
+          "skill1-3"
+        ],
+        "fps": 11,
+        "repeat": 0,
+        "durationsMs": [
+          91,
+          91,
+          91,
+          91
+        ]
+      },
+      "skill2": {
+        "frames": [
+          "skill2-0",
+          "skill2-1",
+          "skill2-2",
+          "skill2-3"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "ultimate": {
+        "frames": [
+          "ultimate-0",
+          "ultimate-1",
+          "ultimate-2",
+          "ultimate-3"
+        ],
+        "fps": 9,
+        "repeat": 0,
+        "durationsMs": [
+          111,
+          111,
+          111,
+          111
+        ]
+      },
+      "hurt": {
+        "frames": [
+          "hurt-0",
+          "hurt-1",
+          "hurt-2",
+          "hurt-3"
+        ],
+        "fps": 9,
+        "repeat": 0,
+        "durationsMs": [
+          111,
+          111,
+          111,
+          111
+        ]
+      },
+      "down": {
+        "frames": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "down-3"
+        ],
+        "fps": 7,
+        "repeat": 0,
+        "durationsMs": [
+          143,
+          143,
+          143,
+          143
+        ]
+      },
+      "recover": {
+        "frames": [
+          "recover-0",
+          "recover-1",
+          "recover-2",
+          "recover-3"
+        ],
+        "fps": 8,
+        "repeat": 0,
+        "durationsMs": [
+          125,
+          125,
+          125,
+          125
+        ]
+      }
+    },
+    "metrics": {
+      "anchor": {
+        "x": 224,
+        "y": 280
+      },
+      "states": {
+        "idle": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -53,
+                "right": 73,
+                "top": -182,
+                "bottom": 0
+              },
+              "height": 182
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -54,
+                "right": 70,
+                "top": -182,
+                "bottom": 0
+              },
+              "height": 182
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -52,
+                "right": 73,
+                "top": -182,
+                "bottom": 0
+              },
+              "height": 182
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -52,
+                "right": 73,
+                "top": -182,
+                "bottom": 0
+              },
+              "height": 182
+            }
+          ]
+        },
+        "walk": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -54,
+                "right": 66,
+                "top": -164,
+                "bottom": 0
+              },
+              "height": 164
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -51,
+                "right": 57,
+                "top": -165,
+                "bottom": 0
+              },
+              "height": 165
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -53,
+                "right": 64,
+                "top": -164,
+                "bottom": 0
+              },
+              "height": 164
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -49,
+                "right": 57,
+                "top": -165,
+                "bottom": 0
+              },
+              "height": 165
+            }
+          ]
+        },
+        "run": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -82,
+                "right": 71,
+                "top": -125,
+                "bottom": 0
+              },
+              "height": 125
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -77,
+                "right": 69,
+                "top": -125,
+                "bottom": 0
+              },
+              "height": 125
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -81,
+                "right": 69,
+                "top": -124,
+                "bottom": 0
+              },
+              "height": 124
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -75,
+                "right": 70,
+                "top": -124,
+                "bottom": 0
+              },
+              "height": 124
+            }
+          ]
+        },
+        "jump": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -56,
+                "right": 88,
+                "top": -161,
+                "bottom": 0
+              },
+              "height": 161
+            }
+          ]
+        },
+        "doublejump": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -45,
+                "right": 57,
+                "top": -146,
+                "bottom": 0
+              },
+              "height": 146
+            }
+          ]
+        },
+        "crouch": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -50,
+                "right": 67,
+                "top": -151,
+                "bottom": 0
+              },
+              "height": 151
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -48,
+                "right": 63,
+                "top": -137,
+                "bottom": 0
+              },
+              "height": 137
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -54,
+                "right": 66,
+                "top": -146,
+                "bottom": 0
+              },
+              "height": 146
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -50,
+                "right": 64,
+                "top": -150,
+                "bottom": 0
+              },
+              "height": 150
+            }
+          ]
+        },
+        "attack1": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -54,
+                "right": 69,
+                "top": -171,
+                "bottom": 0
+              },
+              "height": 171
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -55,
+                "right": 151,
+                "top": -171,
+                "bottom": 0
+              },
+              "height": 171
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -57,
+                "right": 161,
+                "top": -171,
+                "bottom": 0
+              },
+              "height": 171
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -54,
+                "right": 70,
+                "top": -171,
+                "bottom": 0
+              },
+              "height": 171
+            }
+          ]
+        },
+        "attack2": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -57,
+                "right": 82,
+                "top": -156,
+                "bottom": 0
+              },
+              "height": 156
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -65,
+                "right": 76,
+                "top": -156,
+                "bottom": 0
+              },
+              "height": 156
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -53,
+                "right": 161,
+                "top": -157,
+                "bottom": 0
+              },
+              "height": 157
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -49,
+                "right": 65,
+                "top": -160,
+                "bottom": 0
+              },
+              "height": 160
+            }
+          ]
+        },
+        "attack3": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -70,
+                "right": 73,
+                "top": -221,
+                "bottom": 0
+              },
+              "height": 221
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -78,
+                "right": 87,
+                "top": -178,
+                "bottom": 0
+              },
+              "height": 178
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -65,
+                "right": 196,
+                "top": -177,
+                "bottom": 0
+              },
+              "height": 177
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -59,
+                "right": 86,
+                "top": -178,
+                "bottom": 0
+              },
+              "height": 178
+            }
+          ]
+        },
+        "skill1": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -59,
+                "right": 89,
+                "top": -143,
+                "bottom": 0
+              },
+              "height": 143
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -63,
+                "right": 75,
+                "top": -128,
+                "bottom": 0
+              },
+              "height": 128
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -77,
+                "right": 94,
+                "top": -116,
+                "bottom": 0
+              },
+              "height": 116
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -55,
+                "right": 71,
+                "top": -163,
+                "bottom": 0
+              },
+              "height": 163
+            }
+          ]
+        },
+        "skill2": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -58,
+                "right": 91,
+                "top": -186,
+                "bottom": 0
+              },
+              "height": 186
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -64,
+                "right": 91,
+                "top": -186,
+                "bottom": 0
+              },
+              "height": 186
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -61,
+                "right": 118,
+                "top": -185,
+                "bottom": 0
+              },
+              "height": 185
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -56,
+                "right": 77,
+                "top": -186,
+                "bottom": 0
+              },
+              "height": 186
+            }
+          ]
+        },
+        "ultimate": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -67,
+                "right": 62,
+                "top": -142,
+                "bottom": 0
+              },
+              "height": 142
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -67,
+                "right": 73,
+                "top": -163,
+                "bottom": 0
+              },
+              "height": 163
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -64,
+                "right": 62,
+                "top": -175,
+                "bottom": 0
+              },
+              "height": 175
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -65,
+                "right": 61,
+                "top": -175,
+                "bottom": 0
+              },
+              "height": 175
+            }
+          ]
+        },
+        "hurt": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -69,
+                "right": 72,
+                "top": -166,
+                "bottom": 0
+              },
+              "height": 166
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -70,
+                "right": 68,
+                "top": -165,
+                "bottom": 0
+              },
+              "height": 165
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -55,
+                "right": 70,
+                "top": -161,
+                "bottom": 0
+              },
+              "height": 161
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -53,
+                "right": 81,
+                "top": -173,
+                "bottom": 0
+              },
+              "height": 173
+            }
+          ]
+        },
+        "down": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -65,
+                "right": 66,
+                "top": -149,
+                "bottom": 0
+              },
+              "height": 149
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -74,
+                "right": 78,
+                "top": -128,
+                "bottom": 0
+              },
+              "height": 128
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -86,
+                "right": 77,
+                "top": -62,
+                "bottom": 0
+              },
+              "height": 62
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -85,
+                "right": 78,
+                "top": -53,
+                "bottom": 0
+              },
+              "height": 53
+            }
+          ]
+        },
+        "recover": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -94,
+                "right": 81,
+                "top": -74,
+                "bottom": 0
+              },
+              "height": 74
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -75,
+                "right": 62,
+                "top": -123,
+                "bottom": 0
+              },
+              "height": 123
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -53,
+                "right": 63,
+                "top": -146,
+                "bottom": 0
+              },
+              "height": 146
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -55,
+                "right": 73,
+                "top": -170,
+                "bottom": 0
+              },
+              "height": 170
+            }
+          ]
+        }
+      },
+      "playback": {
+        "jump": {
+          "airFrame": 0,
+          "torsoPivot": {
+            "x": 16,
+            "y": -80
+          }
+        },
+        "doublejump": {
+          "frame": 0,
+          "duration": 0.28,
+          "pivot": {
+            "x": 6,
+            "y": -73
+          }
+        },
+        "measurement": "Centers measured from final curated atlas, including integer air-pose alignment; no runtime resizing."
+      },
+      "emitters": {
+        "attack1": {
+          "x": 161,
+          "y": -99,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame; six-pixel tip region, facing right"
+        },
+        "attack2": {
+          "x": 161,
+          "y": -51,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame; six-pixel tip region, facing right"
+        },
+        "attack3": {
+          "x": 196,
+          "y": -108,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame; six-pixel tip region, facing right"
+        },
+        "skill1": {
+          "x": 94,
+          "y": -5,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame; six-pixel tip region, facing right"
+        },
+        "skill2": {
+          "x": 118,
+          "y": -93,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame; six-pixel tip region, facing right"
+        }
+      }
+    }
+  },
+  "mini-maliha": {
+    "id": "mini-maliha",
+    "original": "rhea",
+    "texture": "mini-maliha-atlas",
+    "image": "characters/mini-maliha/sprites/atlas-compact.webp",
+    "atlas": "characters/mini-maliha/sprites/atlas-compact.json",
+    "anchor": {
+      "x": 224,
+      "y": 280
+    },
+    "cellWidth": 448,
+    "cellHeight": 288,
+    "animations": {
+      "idle": {
+        "frames": [
+          "idle-0",
+          "idle-1",
+          "idle-2",
+          "idle-3"
+        ],
+        "fps": 5,
+        "repeat": -1,
+        "durationsMs": [
+          200,
+          200,
+          200,
+          200
+        ]
+      },
+      "walk": {
+        "frames": [
+          "walk-0",
+          "walk-1",
+          "walk-2",
+          "walk-3"
+        ],
+        "fps": 9,
+        "repeat": -1,
+        "durationsMs": [
+          111,
+          111,
+          111,
+          111
+        ]
+      },
+      "run": {
+        "frames": [
+          "run-0",
+          "run-1",
+          "run-2",
+          "run-3"
+        ],
+        "fps": 11,
+        "repeat": -1,
+        "durationsMs": [
+          91,
+          91,
+          91,
+          91
+        ]
+      },
+      "jump": {
+        "frames": [
+          "jump-0"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100
+        ]
+      },
+      "doublejump": {
+        "frames": [
+          "doublejump-0"
+        ],
+        "fps": 12,
+        "repeat": 0,
+        "durationsMs": [
+          83
+        ]
+      },
+      "crouch": {
+        "frames": [
+          "crouch-0",
+          "crouch-1",
+          "crouch-2",
+          "crouch-3"
+        ],
+        "fps": 8,
+        "repeat": 0,
+        "durationsMs": [
+          125,
+          125,
+          125,
+          125
+        ]
+      },
+      "attack1": {
+        "frames": [
+          "attack1-0",
+          "attack1-1",
+          "attack1-2",
+          "attack1-3"
+        ],
+        "fps": 12,
+        "repeat": 0,
+        "durationsMs": [
+          83,
+          83,
+          83,
+          83
+        ]
+      },
+      "attack2": {
+        "frames": [
+          "attack2-0",
+          "attack2-1",
+          "attack2-2",
+          "attack2-3"
+        ],
+        "fps": 12,
+        "repeat": 0,
+        "durationsMs": [
+          83,
+          83,
+          83,
+          83
+        ]
+      },
+      "attack3": {
+        "frames": [
+          "attack3-0",
+          "attack3-1",
+          "attack3-2",
+          "attack3-3"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "skill1": {
+        "frames": [
+          "skill1-0",
+          "skill1-1",
+          "skill1-2",
+          "skill1-3"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "skill2": {
+        "frames": [
+          "skill2-0",
+          "skill2-1",
+          "skill2-2",
+          "skill2-3"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "ultimate": {
+        "frames": [
+          "ultimate-0",
+          "ultimate-1",
+          "ultimate-2",
+          "ultimate-3"
+        ],
+        "fps": 8,
+        "repeat": 0,
+        "durationsMs": [
+          125,
+          125,
+          125,
+          125
+        ]
+      },
+      "hurt": {
+        "frames": [
+          "hurt-0",
+          "hurt-1",
+          "hurt-2",
+          "hurt-3"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "down": {
+        "frames": [
+          "down-0",
+          "down-1",
+          "down-2",
+          "down-3"
+        ],
+        "fps": 8,
+        "repeat": 0,
+        "durationsMs": [
+          125,
+          125,
+          125,
+          125
+        ]
+      },
+      "recover": {
+        "frames": [
+          "recover-0",
+          "recover-1",
+          "recover-2",
+          "recover-3"
+        ],
+        "fps": 10,
+        "repeat": 0,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    },
+    "metrics": {
+      "anchor": {
+        "x": 224,
+        "y": 280
+      },
+      "states": {
+        "idle": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -56,
+                "right": 63,
+                "top": -170,
+                "bottom": 0
+              },
+              "height": 170
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -57,
+                "right": 62,
+                "top": -172,
+                "bottom": 0
+              },
+              "height": 172
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -55,
+                "right": 64,
+                "top": -167,
+                "bottom": 0
+              },
+              "height": 167
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -56,
+                "right": 62,
+                "top": -170,
+                "bottom": 0
+              },
+              "height": 170
+            }
+          ]
+        },
+        "walk": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -54,
+                "right": 66,
+                "top": -164,
+                "bottom": 0
+              },
+              "height": 164
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -54,
+                "right": 65,
+                "top": -167,
+                "bottom": 0
+              },
+              "height": 167
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -54,
+                "right": 66,
+                "top": -164,
+                "bottom": 0
+              },
+              "height": 164
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -54,
+                "right": 65,
+                "top": -167,
+                "bottom": 0
+              },
+              "height": 167
+            }
+          ]
+        },
+        "run": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -66,
+                "right": 51,
+                "top": -146,
+                "bottom": 0
+              },
+              "height": 146
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -64,
+                "right": 50,
+                "top": -147,
+                "bottom": 0
+              },
+              "height": 147
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -67,
+                "right": 50,
+                "top": -146,
+                "bottom": 0
+              },
+              "height": 146
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -64,
+                "right": 49,
+                "top": -148,
+                "bottom": 0
+              },
+              "height": 148
+            }
+          ]
+        },
+        "jump": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -53,
+                "right": 79,
+                "top": -146,
+                "bottom": 0
+              },
+              "height": 146
+            }
+          ]
+        },
+        "doublejump": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -52,
+                "right": 54,
+                "top": -153,
+                "bottom": 0
+              },
+              "height": 153
+            }
+          ]
+        },
+        "crouch": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -47,
+                "right": 57,
+                "top": -140,
+                "bottom": 0
+              },
+              "height": 140
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -45,
+                "right": 56,
+                "top": -131,
+                "bottom": 0
+              },
+              "height": 131
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -44,
+                "right": 59,
+                "top": -132,
+                "bottom": 0
+              },
+              "height": 132
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -42,
+                "right": 55,
+                "top": -141,
+                "bottom": 0
+              },
+              "height": 141
+            }
+          ]
+        },
+        "attack1": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -51,
+                "right": 60,
+                "top": -152,
+                "bottom": 0
+              },
+              "height": 152
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -51,
+                "right": 72,
+                "top": -153,
+                "bottom": 0
+              },
+              "height": 153
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -51,
+                "right": 109,
+                "top": -152,
+                "bottom": 0
+              },
+              "height": 152
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -48,
+                "right": 63,
+                "top": -152,
+                "bottom": 0
+              },
+              "height": 152
+            }
+          ]
+        },
+        "attack2": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -46,
+                "right": 74,
+                "top": -155,
+                "bottom": 0
+              },
+              "height": 155
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -46,
+                "right": 78,
+                "top": -155,
+                "bottom": 0
+              },
+              "height": 155
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -45,
+                "right": 80,
+                "top": -174,
+                "bottom": 0
+              },
+              "height": 174
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -46,
+                "right": 78,
+                "top": -155,
+                "bottom": 0
+              },
+              "height": 155
+            }
+          ]
+        },
+        "attack3": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -44,
+                "right": 56,
+                "top": -156,
+                "bottom": 0
+              },
+              "height": 156
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -48,
+                "right": 54,
+                "top": -155,
+                "bottom": 0
+              },
+              "height": 155
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -50,
+                "right": 128,
+                "top": -156,
+                "bottom": 0
+              },
+              "height": 156
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -45,
+                "right": 50,
+                "top": -157,
+                "bottom": 0
+              },
+              "height": 157
+            }
+          ]
+        },
+        "skill1": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -55,
+                "right": 70,
+                "top": -166,
+                "bottom": 0
+              },
+              "height": 166
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -55,
+                "right": 70,
+                "top": -165,
+                "bottom": 0
+              },
+              "height": 165
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -58,
+                "right": 70,
+                "top": -165,
+                "bottom": 0
+              },
+              "height": 165
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -60,
+                "right": 66,
+                "top": -165,
+                "bottom": 0
+              },
+              "height": 165
+            }
+          ]
+        },
+        "skill2": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -58,
+                "right": 67,
+                "top": -161,
+                "bottom": 0
+              },
+              "height": 161
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -49,
+                "right": 67,
+                "top": -160,
+                "bottom": 0
+              },
+              "height": 160
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -49,
+                "right": 91,
+                "top": -151,
+                "bottom": 0
+              },
+              "height": 151
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -57,
+                "right": 60,
+                "top": -160,
+                "bottom": 0
+              },
+              "height": 160
+            }
+          ]
+        },
+        "ultimate": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -60,
+                "right": 68,
+                "top": -161,
+                "bottom": 0
+              },
+              "height": 161
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -54,
+                "right": 77,
+                "top": -161,
+                "bottom": 0
+              },
+              "height": 161
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -67,
+                "right": 76,
+                "top": -161,
+                "bottom": 0
+              },
+              "height": 161
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -55,
+                "right": 60,
+                "top": -161,
+                "bottom": 0
+              },
+              "height": 161
+            }
+          ]
+        },
+        "hurt": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -80,
+                "right": 50,
+                "top": -145,
+                "bottom": 0
+              },
+              "height": 145
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -77,
+                "right": 38,
+                "top": -142,
+                "bottom": 0
+              },
+              "height": 142
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -71,
+                "right": 64,
+                "top": -144,
+                "bottom": 0
+              },
+              "height": 144
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -48,
+                "right": 70,
+                "top": -147,
+                "bottom": 0
+              },
+              "height": 147
+            }
+          ]
+        },
+        "down": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -79,
+                "right": 48,
+                "top": -116,
+                "bottom": 0
+              },
+              "height": 116
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -67,
+                "right": 47,
+                "top": -106,
+                "bottom": 0
+              },
+              "height": 106
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -71,
+                "right": 58,
+                "top": -79,
+                "bottom": 0
+              },
+              "height": 79
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -69,
+                "right": 58,
+                "top": -79,
+                "bottom": 0
+              },
+              "height": 79
+            }
+          ]
+        },
+        "recover": {
+          "frames": [
+            {
+              "frame": 0,
+              "bounds": {
+                "left": -76,
+                "right": 59,
+                "top": -103,
+                "bottom": 0
+              },
+              "height": 103
+            },
+            {
+              "frame": 1,
+              "bounds": {
+                "left": -64,
+                "right": 54,
+                "top": -121,
+                "bottom": 0
+              },
+              "height": 121
+            },
+            {
+              "frame": 2,
+              "bounds": {
+                "left": -53,
+                "right": 69,
+                "top": -145,
+                "bottom": 0
+              },
+              "height": 145
+            },
+            {
+              "frame": 3,
+              "bounds": {
+                "left": -57,
+                "right": 63,
+                "top": -158,
+                "bottom": 0
+              },
+              "height": 158
+            }
+          ]
+        }
+      },
+      "playback": {
+        "jump": {
+          "airFrame": 0,
+          "torsoPivot": {
+            "x": 13,
+            "y": -73
+          }
+        },
+        "doublejump": {
+          "frame": 0,
+          "duration": 0.28,
+          "pivot": {
+            "x": 1,
+            "y": -76
+          }
+        },
+        "measurement": "Centers measured from final curated atlas, including integer air-pose alignment; no runtime resizing."
+      },
+      "emitters": {
+        "attack1": {
+          "x": 109,
+          "y": -91,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame (sphere or hand); six-pixel tip region, facing right"
+        },
+        "attack2": {
+          "x": 80,
+          "y": -163,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame (sphere or hand); six-pixel tip region, facing right"
+        },
+        "attack3": {
+          "x": 128,
+          "y": -91,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame (sphere or hand); six-pixel tip region, facing right"
+        },
+        "skill1": {
+          "x": 70,
+          "y": -106,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame (sphere or hand); six-pixel tip region, facing right"
+        },
+        "skill2": {
+          "x": 91,
+          "y": -82,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame (sphere or hand); six-pixel tip region, facing right"
+        },
+        "ultimate": {
+          "x": 76,
+          "y": -111,
+          "frame": 2,
+          "method": "Farthest-right opaque endpoint on impact frame (sphere or hand); six-pixel tip region, facing right"
+        }
+      }
+    }
+  }
+}

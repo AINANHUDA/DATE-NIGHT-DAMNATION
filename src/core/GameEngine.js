@@ -1,3 +1,7 @@
+/** MONKEY MIND III | MODULE
+ * Phaser engine initialization and lifecycle.
+ * Customization map: docs/CUSTOMIZATION.md
+ */
 
 import Phaser from 'phaser';
 import { gameConfig } from '../config/gameConfig.js';

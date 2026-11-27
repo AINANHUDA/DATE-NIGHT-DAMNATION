@@ -1,3 +1,7 @@
+/** MONKEY MIND III | MODULE
+ * Initial boot and preloader transition.
+ * Customization map: docs/CUSTOMIZATION.md
+ */
 
 import Phaser from 'phaser';
 
