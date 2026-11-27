@@ -1,3 +1,4 @@
+import {gothicTitle,relicRule} from '../ui/GothicArt.js';
 /** MONKEY MIND III | MODULE
  * Main menu, opening gate, title artwork and continue/new game.
  * Customization map: docs/CUSTOMIZATION.md
@@ -18,24 +19,24 @@ export class TitleScene extends Phaser.Scene {
   registerCharacterAnimations(this);
   const bg=cover(this.add.image(W/2,H/2,'prologue-bg'),W,H);
   this.tweens.add({targets:bg,scaleX:bg.scaleX*1.06,scaleY:bg.scaleY*1.06,duration:16000,yoyo:true,repeat:-1,ease:'Sine.InOut'});
-  const veil=this.add.graphics().fillGradientStyle(0x050811,0x050811,0x050811,0x050811,.65,.05,.96,.38).fillRect(0,0,W,H);
+  const veil=this.add.graphics().fillGradientStyle(0x17090e,0x100b12,0x10070b,0x100b12,.92,.25,.98,.65).fillRect(0,0,W,H);
   const hero=this.add.sprite(940,590,CHARACTERS.ainan.texture);setCharacter(hero,'ainan',380);
   const glow=this.add.ellipse(940,594,250,32,0x000000,.34).setDepth(0);hero.setDepth(1);
   for(let i=0;i<(settings.graphics==='low'?8:24);i++){const x=Phaser.Math.Between(10,W-10),y=Phaser.Math.Between(80,H-30);const p=this.add.circle(x,y,Phaser.Math.Between(1,3),0xffd78d,.5).setDepth(2);this.tweens.add({targets:p,y:y-65,alpha:.08,duration:1800+i*95,yoyo:true,repeat:-1,ease:'Sine.InOut'});}
-  const t=(x,y,str,size,color='#f8ebce',family='Georgia')=>this.add.text(x,y,str,{fontFamily:family==='Arial'?'Rajdhani, Arial':family,fontSize:`${size}px`,color,fontStyle:'bold',stroke:'#10121d',strokeThickness:3}).setDepth(4);
-  t(90,90,'A  MONKEY MIND ADVENTURE',18,'#dfc08a','Arial');
-  t(82,155,'MONKEY',92,'#f8ebce','Arial');t(82,250,'MIND III',92,'#f8ebce','Arial');t(90,355,'T H E   R E S C U E',24,'#f9ca72','Arial');
-  this.add.rectangle(92,409,430,2,0xcfa45b,.85).setOrigin(0,.5).setDepth(4);
-  this.add.text(90,438,'One date. One kidnapping.\nAn unreasonable number of bananas.',{fontFamily:'Rajdhani, Arial',fontStyle:'bold',fontSize:'27px',color:'#f2e6cf',lineSpacing:7}).setDepth(4);
-  const menuButton=(x,y,w,label,action,primary=false)=>{const plate=this.add.rectangle(x,y,w,50,primary?0xa96b26:0x182535,.95).setStrokeStyle(1,0xffdc90,.8).setInteractive({useHandCursor:true}).setDepth(5);t(x,y,label,20,'#fff6df','Arial').setOrigin(.5).setDepth(6);plate.on('pointerover',()=>plate.setFillStyle(primary?0xcb903d:0x35465c));plate.on('pointerout',()=>plate.setFillStyle(primary?0xa96b26:0x182535));plate.on('pointerdown',()=>{if(!this.opening&&!this.menuOpening)action();});};
-  // Main action always starts the prologue. Resume is a separate, explicit choice.
+  const t=(x,y,str,size,color='#f8ebce')=>this.add.text(x,y,str,{fontFamily:'Georgia, Times New Roman, serif',fontSize:`${size}px`,color,fontStyle:'bold',stroke:'#160c12',strokeThickness:2}).setDepth(4);
+  const ornaments=this.add.graphics().setDepth(3);ornaments.lineStyle(2,0xa7804e,.7).strokeRect(26,25,W-52,H-50);ornaments.lineStyle(1,0x8b623b,.5).strokeRect(34,33,W-68,H-66);
+  t(350,64,'A   M O N K E Y   M I N D   A D V E N T U R E',14,'#ddbc81').setOrigin(.5);
+  gothicTitle(this,350,206,625,4);
+  t(350,330,'T H E   R E S C U E',24,'#e2be80').setOrigin(.5);relicRule(this,350,361,492);
+  this.add.text(350,390,'One date. One kidnapping.\nAn unreasonable number of bananas.',{fontFamily:'Georgia, serif',fontSize:'22px',color:'#e2d3bc',align:'center',lineSpacing:8}).setOrigin(.5,0).setDepth(4);
+  const menuButton=(x,y,w,label,action,primary=false,enabled=true)=>{const bg=this.add.rectangle(x,y,w,49,primary?0x4f1823:0x171218,primary?.98:.82).setStrokeStyle(1,enabled?0xb89760:0x5a4d43,.9).setDepth(5);const g=this.add.graphics().setDepth(6);g.lineStyle(1,0x917147,.7).strokeRect(x-w/2+5,y-19,w-10,38);for(const dx of [-w/2+10,w/2-10]){g.fillStyle(enabled?0xd3aa65:0x736251);g.fillPoints([{x:x+dx-4,y},{x:x+dx,y:y-5},{x:x+dx+4,y},{x:x+dx,y:y+5}],true);}const txt=t(x,y,label,primary?23:18,enabled?'#f5dfac':'#84786d').setOrigin(.5).setDepth(7);if(!enabled)return;bg.setInteractive({useHandCursor:true});bg.on('pointerover',()=>{bg.setFillStyle(primary?0x8a2734:0x3b242b);txt.setColor('#fff5da');});bg.on('pointerout',()=>{bg.setFillStyle(primary?0x4f1823:0x171218);txt.setColor('#f5dfac');});bg.on('pointerdown',()=>{if(!this.opening&&!this.menuOpening)action();});};
+  // Always starts prologue; continuation is a separate action.
   const play=()=>this.startStory();
-  menuButton(307,535,434,'START STORY  ›',play,true);
-  if(profile.save)menuButton(195,595,210,'CONTINUE SAVE',()=>this.resumeStory());
-  else {this.add.rectangle(195,595,210,50,0x182535,.45).setStrokeStyle(1,0x424955).setDepth(5);t(195,595,'NO SAVED GAME',18,'#828895','Arial').setOrigin(.5).setDepth(6);}
-  menuButton(419,595,210,'CHAPTERS',()=>openMenu(this,'chapters'));
-  menuButton(195,650,210,'SETTINGS',()=>openMenu(this,'settings'));
-  menuButton(419,650,210,`COMPLETED: ${profile.completed}`,()=>openMenu(this,'chapters'));
+  menuButton(350,493,492,'Start Story',play,true);
+  menuButton(224,553,240,profile.save?'Continue Save':'No Saved Game',()=>this.resumeStory(),false,!!profile.save);
+  menuButton(476,553,240,'Chapters',()=>openMenu(this,'chapters'));
+  menuButton(224,613,240,'Settings',()=>openMenu(this,'settings'));
+  menuButton(476,613,240,`Completed: ${profile.completed}`,()=>openMenu(this,'chapters'));
   this.add.text(W/2,H-15,'AETHER CLASH by Bang Tutorial • Adapted • CC BY-NC 4.0 • github.com/bangtutorial/aether-clash • Click for credits',{fontFamily:'Arial',fontSize:'12px',color:'#e4d7c7'}).setOrigin(.5,1).setDepth(4).setInteractive({useHandCursor:true}).on('pointerdown',()=>{if(!this.opening&&!this.menuOpening)globalThis.location.assign(`${import.meta.env.BASE_URL}credits.html`);});
   const key=e=>{if(!e.repeat&&!this.menuOpening&&!this.opening)play();};this.input.keyboard.on('keydown-ENTER',key);this.events.once('shutdown',()=>this.input.keyboard.off('keydown-ENTER',key));
   if(recoveredFromBackup)this.add.text(W-25,25,'Save recovered from backup',{fontFamily:'Arial',fontSize:'16px',color:'#ffe0a2'}).setOrigin(1,0).setDepth(8);

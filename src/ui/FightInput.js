@@ -1,3 +1,4 @@
+import {joystickVector,joystickActions,emblem} from './RelicControls.js';
 /** MONKEY MIND III | MODULE
  * Keyboard bindings (CODE), mobile button positions, input buffering and touch handling.
  * Customization map: docs/CUSTOMIZATION.md
@@ -32,7 +33,8 @@ export function makeFightInput(scene,W,H){
  const queue=a=>{if(TAPS.has(a))pending.set(a,inputClock()+(a==='jump'?200:450));};
  function down(e){const a=CODE[e.code];if(!a||scene.menuOpening||scene.finished||scene.sceneFailed)return;e.preventDefault();if(e.repeat)return;if(!keyboardHeld.has(e.code)){keyboardHeld.set(e.code,a);queue(a);}}
  function up(e){if(CODE[e.code]){e.preventDefault();keyboardHeld.delete(e.code);}}
- function clear(){keyboardHeld.clear();pointerHeld.clear();movementPointers.clear();pending.clear();lastAccepted.clear();}
+ let resetStick=()=>{};
+ function clear(){keyboardHeld.clear();pointerHeld.clear();movementPointers.clear();pending.clear();lastAccepted.clear();resetStick();}
  const release=p=>{pointerHeld.delete(p.id);movementPointers.delete(p.id);};
  const visibility=()=>{if(globalThis.document?.hidden)clear();};
  const canvas=scene.game.canvas;
@@ -57,31 +59,48 @@ export function makeFightInput(scene,W,H){
   buttons.push({bg:disk,halo,accent,action,title,shortcut,icon,visual:null,x,y,r});
  }
  for(const [action,x,y,r,name,key,accent] of CONTROL_LAYOUT)button(x*W/1280,y*H/720,r,name,key,action,accent);
- // A portrait-only DOM dock uses physical CSS pixels instead of a shrunken game canvas.
- // Landscape still uses Phaser buttons and shares the very same input buffers.
+ // Real browser: independent pointer-captured joystick and ability cluster.
+ // Phaser circles remain a fallback when there is no DOM canvas (keyboard/test environments).
  const doc=globalThis.document;
  const media=globalThis.window?.matchMedia?.('(orientation: portrait) and (max-width: 700px) and (min-height: 480px)');
- const updateDock=()=>{const next=!!(dock&&media?.matches);if(next!==portrait){clear();portrait=next;for(const b of buttons)for(const o of [b.bg,b.halo,b.title,b.shortcut,b.icon])o?.setVisible?.(!portrait);}if(dock){const hidden=!portrait||!!scene.menuOpening||!!scene.finished||!!scene.sceneFailed;if(dock.hidden!==hidden){dock.hidden=hidden;clear();globalThis.window?.dispatchEvent?.(new Event('resize'));}}};
- if(doc?.createElement&&media&&doc.body){
-  dock=doc.createElement('div');dock.className='mm-touch-dock';dock.hidden=true;
-  const heading=doc.createElement('div');heading.className='mm-touch-heading';heading.textContent='TOUCH CONTROLS';
-  const pause=doc.createElement('button');pause.type='button';pause.textContent='Ⅱ PAUSE';pause.addEventListener('click',()=>pauseHandler?.());heading.appendChild(pause);dock.appendChild(heading);
-  const groups=doc.createElement('div');groups.className='mm-touch-groups';dock.appendChild(groups);
-  const left=doc.createElement('div'),right=doc.createElement('div');left.className='mm-touch-left';right.className='mm-touch-right';groups.append(left,right);
-  for(const action of ['dash','guard','left','right','shoot','skill','ultimate','jump','attack','heavy']){
-   const row=CONTROL_LAYOUT.find(v=>v[0]===action);const el=doc.createElement('button');el.type='button';el.dataset.action=action;el.setAttribute('aria-label',row[4]);el.style.setProperty('--accent','#'+row[6].toString(16).padStart(6,'0'));
-   const svg=doc.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 32 32');svg.setAttribute('aria-hidden','true');for(const line of CONTROL_ICONS[action]){const poly=doc.createElementNS('http://www.w3.org/2000/svg','polyline');poly.setAttribute('points',line.map(v=>v.join(',')).join(' '));svg.appendChild(poly);}el.appendChild(svg);const label=doc.createElement('span');label.textContent=row[4];el.appendChild(label);
-   const id=e=>'dock:'+e.pointerId;el.addEventListener('pointerdown',e=>{e.preventDefault();if(!allowed())return;el.setPointerCapture?.(e.pointerId);press(id(e),action);});
-   el.addEventListener('pointermove',e=>{const k=id(e);if(!movementPointers.has(k))return;const a=doc.elementFromPoint(e.clientX,e.clientY)?.closest?.('[data-action]')?.dataset.action;if(a==='left'||a==='right')pointerHeld.set(k,a);else pointerHeld.delete(k);});
+ let rectKey='',wasBlocked=false,stickId=null,stickUp=false;
+ const updateDock=()=>{
+  if(!dock)return;
+  const next=!!media?.matches;
+  if(next!==portrait){clear();portrait=next;rectKey='';dock.classList.toggle('portrait',portrait);}
+  const hidden=!!(scene.menuOpening||scene.finished||scene.sceneFailed||scene.transition);
+  const blocked=!allowed();if(blocked&&!wasBlocked)clear();wasBlocked=blocked;
+  if(dock.hidden!==hidden){dock.hidden=hidden;clear();globalThis.window?.dispatchEvent?.(new Event('resize'));}
+  if(!portrait&&!hidden){const r=canvas.getBoundingClientRect();const key=[r.left,r.top,r.width,r.height].join(':');if(key!==rectKey){rectKey=key;for(const [k,v] of Object.entries({left:r.left,top:r.top,width:r.width,height:r.height}))dock.style.setProperty('--play-'+k,v+'px');}}
+ };
+ if(doc?.createElement&&media&&doc.body&&canvas?.getBoundingClientRect){
+  dock=doc.createElement('div');dock.className='mm-relic-controls mm-touch-dock';dock.hidden=false;
+  const heading=doc.createElement('div');heading.className='mm-relic-heading';heading.textContent='RELIC CONTROLS';
+  const pause=doc.createElement('button');pause.type='button';pause.textContent='Ⅱ  PAUSE';pause.addEventListener('click',()=>pauseHandler?.());heading.appendChild(pause);dock.appendChild(heading);
+  const groups=doc.createElement('div');groups.className='mm-relic-groups';dock.appendChild(groups);
+  const left=doc.createElement('div'),right=doc.createElement('div');left.className='mm-relic-left';right.className='mm-relic-right';groups.append(left,right);
+  const stick=doc.createElement('div');stick.className='mm-joystick';stick.setAttribute('role','group');stick.setAttribute('aria-label','Drag to move, up to jump, down to guard');
+  const knob=doc.createElement('div');knob.className='mm-stick-knob';stick.appendChild(knob);left.appendChild(stick);
+  const aux=doc.createElement('div');aux.className='mm-relic-aux';left.appendChild(aux);
+  resetStick=()=>{if(stickId!==null){pointerHeld.delete('joy-x:'+stickId);pointerHeld.delete('joy-y:'+stickId);}stickId=null;stickUp=false;knob.style.setProperty('--dx','0px');knob.style.setProperty('--dy','0px');};
+  const move=e=>{if(stickId!==e.pointerId)return;if(!allowed()){resetStick();return;}const r=stick.getBoundingClientRect(),radius=Math.min(r.width,r.height)*.35;const v=joystickVector(e.clientX-r.left-r.width/2,e.clientY-r.top-r.height/2,radius);knob.style.setProperty('--dx',v.x*radius+'px');knob.style.setProperty('--dy',v.y*radius+'px');const a=joystickActions(v.x,v.y,stickUp);const x='joy-x:'+stickId,y='joy-y:'+stickId;if(a.horizontal)pointerHeld.set(x,a.horizontal);else pointerHeld.delete(x);if(a.guard)pointerHeld.set(y,'guard');else pointerHeld.delete(y);if(a.up&&!stickUp)queue('jump');stickUp=a.up;};
+  stick.addEventListener('pointerdown',e=>{e.preventDefault();if(stickId!==null||!allowed())return;stickId=e.pointerId;try{stick.setPointerCapture(e.pointerId);}catch{}move(e);});stick.addEventListener('pointermove',move);
+  for(const evt of ['pointerup','pointercancel','lostpointercapture'])stick.addEventListener(evt,e=>{if(stickId===e.pointerId)resetStick();});
+  for(const action of ['dash','guard','shoot','skill','ultimate','jump','attack','heavy']){
+   const row=CONTROL_LAYOUT.find(v=>v[0]===action);const el=doc.createElement('button');el.type='button';el.dataset.action=action;el.setAttribute('aria-label',row[4]+' ('+row[5]+')');const color='#'+row[6].toString(16).padStart(6,'0');el.style.setProperty('--accent',color);
+   el.innerHTML=emblem(action,color);const label=doc.createElement('span');label.className='mm-ability-label';label.textContent=row[4];el.appendChild(label);const state=doc.createElement('small');state.className='mm-ability-state';el.appendChild(state);
+   const id=e=>'dock:'+e.pointerId;el.addEventListener('pointerdown',e=>{e.preventDefault();if(!allowed())return;try{el.setPointerCapture(e.pointerId);}catch{}press(id(e),action);});
    for(const evt of ['pointerup','pointercancel','lostpointercapture'])el.addEventListener(evt,e=>release({id:id(e)}));
-   (['dash','guard','left','right'].includes(action)?left:right).appendChild(el);domButtons.set(action,el);
+   (['dash','guard'].includes(action)?aux:right).appendChild(el);domButtons.set(action,el);
   }
-  doc.body.appendChild(dock);media.addEventListener?.('change',updateDock);scene.events.on('pause',updateDock);scene.events.on('resume',updateDock);updateDock();
+  doc.body.appendChild(dock);for(const b of buttons)for(const o of [b.bg,b.halo,b.title,b.shortcut,b.icon])o?.setVisible?.(false);
+  media.addEventListener?.('change',updateDock);scene.events.on('pause',updateDock);scene.events.on('resume',updateDock);updateDock();
  }
  function tell(message,ms=1000){status.setText(message);noticeUntil=now()+ms;}
  function consume(a){pending.delete(a);lastAccepted.set(a,inputClock());}
  function sample(){updateDock();const out={};for(const a of ACTIONS){out[a]=held(a);if(pending.has(a)&&pending.get(a)<inputClock())pending.delete(a);out[a+'Pressed']=pending.has(a)||(REPEAT.has(a)&&out[a]&&inputClock()-(lastAccepted.get(a)??-Infinity)>=180);}
   for(const b of buttons){const active=!!(out[b.action]||out[b.action+'Pressed']);const ready=b.action==='ultimate'&&Number(scene.energy)>=100;const visual=`${active}:${ready}`;if(b.visual!==visual){b.visual=visual;b.bg.setFillStyle(active?0x394b64:ready?0x655024:0x121c31,active?1:ready?.98:.87);b.halo.setStrokeStyle(ready?5:active?4:2,b.accent,active||ready?1:.55);const el=domButtons.get(b.action);el?.classList.toggle('active',active);el?.classList.toggle('ready',ready);b.title.setColor(active?'#ffffff':ready?'#ffdf87':'#fff4df');}}
+  if(dock){for(const [a,el] of domButtons){const state=el.querySelector('.mm-ability-state');const remaining=Math.max(0,((scene.player?.dashReady??scene.dashReady??0)-inputClock())/1000);const text=a==='ultimate'?(Number(scene.energy)>=100?'READY':Math.floor(Number(scene.energy)||0)+'%'):a==='shoot'?String(scene.ammo??0):a==='dash'&&remaining>0?remaining.toFixed(1)+'s':'';if(state.textContent!==text)state.textContent=text;el.classList.toggle('depleted',a==='shoot'&&scene.ammo===0);}}
   if(now()>noticeUntil&&status.text)status.setText('');return out;}
  scene.events.once('shutdown',()=>{if(dock){dock.remove();globalThis.window?.dispatchEvent?.(new Event('resize'));}media?.removeEventListener?.('change',updateDock);scene.events.off('pause',updateDock);scene.events.off('resume',updateDock);window.removeEventListener('keydown',down);window.removeEventListener('keyup',up);window.removeEventListener('blur',clear);scene.input.off('pointerup',release);scene.input.off('pointerupoutside',release);scene.game.events.off('blur',clear);canvas?.removeEventListener('touchcancel',clear);canvas?.removeEventListener('pointercancel',clear);canvas?.removeEventListener('lostpointercapture',clear);globalThis.document?.removeEventListener('visibilitychange',visibility);clear();});
  return {sample,consume,tell,clear,buttons,setPauseHandler:fn=>{pauseHandler=fn;}};

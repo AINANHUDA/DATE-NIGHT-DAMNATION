@@ -1,3 +1,4 @@
+import {gothicTitle,relicRule} from '../ui/GothicArt.js';
 /** MONKEY MIND III | MODULE
  * Loads the registered assets; handles missing art and optional audio.
  * Customization map: docs/CUSTOMIZATION.md
@@ -13,12 +14,14 @@ export class PreloadScene extends Phaser.Scene {
         this.failedAssets = [];
         this.failedAudio = [];
         const x = GAME_WIDTH / 2, y = GAME_HEIGHT / 2;
-        this.cameras.main.setBackgroundColor('#080B0E');
-        this.add.text(x, y - 100, 'MONKEY MIND III', { fontFamily: 'Arial', fontSize: '48px', color: '#E8C078', fontStyle: 'bold' }).setOrigin(.5);
-        this.status = this.add.text(x, y - 30, 'Loading the new character library...', { fontSize: '20px', color: '#F2E8D5', align: 'center', wordWrap: { width: 1100 } }).setOrigin(.5);
-        this.add.rectangle(x, y + 35, 500, 14, 0x29323C);
-        const bar = this.add.rectangle(x - 250, y + 35, 500, 14, 0xE8C078).setOrigin(0, .5).setScale(0, 1);
-        const percent = this.add.text(x, y + 70, '0%', { fontSize: '20px', color: '#E8C078' }).setOrigin(.5);
+        this.cameras.main.setBackgroundColor('#10090d');
+        const frame=this.add.graphics();frame.lineStyle(1,0x8b663b,.75).strokeRect(34,34,GAME_WIDTH-68,GAME_HEIGHT-68);frame.lineStyle(1,0x513329,.7).strokeRect(41,41,GAME_WIDTH-82,GAME_HEIGHT-82);
+        gothicTitle(this,x,y-133,590,3);
+        relicRule(this,x,y-10,540,3);
+        this.status = this.add.text(x, y+30, 'Preparing the adventure…', { fontFamily:'Georgia, serif',fontSize: '22px', color: '#e0cda8', align: 'center', wordWrap: { width: 1100 } }).setOrigin(.5);
+        const rail=this.add.graphics();rail.fillStyle(0x27141b,1).fillRect(x-260,y+75,520,20);rail.lineStyle(2,0xb58c54,1).strokeRect(x-263,y+72,526,26);
+        const bar = this.add.rectangle(x - 258, y + 85, 516, 16, 0xaa3740).setOrigin(0, .5).setScale(0, 1);
+        const percent = this.add.text(x, y + 128, '0%', { fontFamily:'Georgia, serif',fontSize: '22px', color: '#E8C078' }).setOrigin(.5);
         const progress = v => { bar.setScale(v, 1); percent.setText(`${Math.round(v * 100)}%`); };
         const error = file => { if (assetManifest.audio.some(a=>a.key===file.key)) this.failedAudio.push(file.key); else this.failedAssets.push(file.key); console.error('[Asset failed]', file.key, file.src); };
         this.load.on('progress', progress);
@@ -37,7 +40,7 @@ export class PreloadScene extends Phaser.Scene {
         if (missing.length) {
             this.status.setColor('#EF7777').setText(`Required artwork failed to load (${missing.length}):\n${missing.slice(0,8).join(', ')}${missing.length>8?' …':''}\nCheck F12 > Console for full details.`);
             console.error('[Required assets missing]', missing);
-            const retry = this.add.text(GAME_WIDTH/2,GAME_HEIGHT/2+130,'RELOAD GAME',{fontFamily:'Arial',fontSize:'25px',backgroundColor:'#304359',padding:{x:24,y:12},color:'#fff0cc'}).setOrigin(.5).setInteractive({useHandCursor:true});
+            const retry = this.add.text(GAME_WIDTH/2,GAME_HEIGHT/2+200,'RELOAD GAME',{fontFamily:'Arial',fontSize:'25px',backgroundColor:'#304359',padding:{x:24,y:12},color:'#fff0cc'}).setOrigin(.5).setInteractive({useHandCursor:true});
             retry.once('pointerdown',()=>globalThis.location?.reload());
             return;
         }
